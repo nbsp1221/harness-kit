@@ -1,0 +1,4 @@
+interface:
+  display_name: "hk-review"
+  short_description: "Write a harness-kit review artifact"
+  default_prompt: "Use $hk-review to review an implemented and verified harness-kit spec item and write review.md."

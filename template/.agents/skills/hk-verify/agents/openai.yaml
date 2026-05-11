@@ -1,0 +1,4 @@
+interface:
+  display_name: "hk-verify"
+  short_description: "Write harness-kit verification evidence"
+  default_prompt: "Use $hk-verify to verify an implemented harness-kit spec item and write verification.md."

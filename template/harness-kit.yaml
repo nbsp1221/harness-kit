@@ -1,0 +1,13 @@
+schema_version: 1
+timezone: local
+workflow:
+  artifact_root: specs
+  spec_id_format: YYYYMMDD-HHMM-short-slug
+  lifecycle:
+    - spec
+    - plan
+    - implement
+    - verify
+    - review
+memory:
+  learnings: memory/learnings.md

@@ -1,0 +1,4 @@
+interface:
+  display_name: "hk-spec"
+  short_description: "Start a harness-kit spec item"
+  default_prompt: "Use $hk-spec to create a new harness-kit spec item."
