@@ -20,11 +20,11 @@ host_focus:
 
 ## Summary
 
-In this first research pass, `compound-engineering-plugin` looks like the best methodology benchmark for `harness-kit`, but it is not a full runtime. The repo is best understood as a cross-harness plugin and conversion layer that packages a staged development method for multiple hosts. The most valuable parts for `harness-kit` are its explicit stage separation, artifact handoffs, manifest-backed installation, and cleanup discipline.
+In this first research pass, `compound-engineering-plugin` looks like the best methodology benchmark for `wayrail`, but it is not a full runtime. The repo is best understood as a cross-harness plugin and conversion layer that packages a staged development method for multiple hosts. The most valuable parts for `wayrail` are its explicit stage separation, artifact handoffs, manifest-backed installation, and cleanup discipline.
 
 ## Why It Matters
 
-- It maps closely to the problem `harness-kit` is trying to solve: standardize project startup and ongoing agent work.
+- It maps closely to the problem `wayrail` is trying to solve: standardize project startup and ongoing agent work.
 - It emphasizes durable learning capture instead of one-off session output.
 - It is a strong example of a cross-host methodology plugin rather than a single-host runtime.
 
@@ -76,7 +76,7 @@ Observed patterns:
 - special handling for Codex and other targets
 - path-safety checks to avoid unsafe writes during install
 
-This matters because `harness-kit` will likely need a similar distinction between reusable method assets, host adapter surfaces, repo-local generated files, and cleanup or migration behavior.
+This matters because `wayrail` will likely need a similar distinction between reusable method assets, host adapter surfaces, repo-local generated files, and cleanup or migration behavior.
 
 ## Verification And Control
 
@@ -87,7 +87,7 @@ The repo's control model is strongest at packaging and workflow boundaries:
 - cleanup is a first-class command
 - the pipeline model keeps stage transitions deliberate rather than vague
 
-The main verification insight for `harness-kit` is that host conversion and file installation should be treated as real engineering surfaces with tests, not as side scripts around the “real” product.
+The main verification insight for `wayrail` is that host conversion and file installation should be treated as real engineering surfaces with tests, not as side scripts around the “real” product.
 
 ## Memory And Compounding
 
@@ -103,11 +103,11 @@ What is not clearly present in this pass:
 
 - a visible standalone runtime memory service
 
-That means `harness-kit` should copy the habit of durable learnings and structured artifacts, but should not assume this repo already proves a full memory substrate design.
+That means `wayrail` should copy the habit of durable learnings and structured artifacts, but should not assume this repo already proves a full memory substrate design.
 
 ## Strengths
 
-- Strong alignment with `harness-kit` on staged lifecycle design
+- Strong alignment with `wayrail` on staged lifecycle design
 - Cross-host packaging discipline is useful for long-term portability
 - Manifest-backed install and cleanup behavior are more mature than most prompt-pack projects
 - Good separation between product context, implementation context, execution, and cleanup
@@ -135,7 +135,7 @@ That means `harness-kit` should copy the habit of durable learnings and structur
 ## Open Questions
 
 - Is the auto-memory direction still proposal-level or shipping somewhere deeper in the repo?
-- What is the smallest subset that preserves the value for `harness-kit` v1?
+- What is the smallest subset that preserves the value for `wayrail` v1?
 - Which parts should become repo-local generated files versus global host adapter assets?
 
 ## Evidence

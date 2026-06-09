@@ -1,0 +1,4 @@
+interface:
+  display_name: "wr-review"
+  short_description: "Write a wayrail review artifact"
+  default_prompt: "Use $wr-review to review an implemented and verified wayrail spec item and write review.md."

@@ -27,11 +27,11 @@ timezone: <Timezone>
 
 ### Resolve Before Planning
 
-### Deferred to hk-plan
+### Deferred to wr-plan
 
 ## Planning Handoff
 
-Status: Blocked before hk-plan
+Status: Blocked before wr-plan
 Spec path: specs/<YYYYMMDD-HHMM-short-slug>/spec.md
 Open questions:
 Key assumptions:

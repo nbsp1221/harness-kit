@@ -7,11 +7,11 @@ owner: repository maintainer
 
 # Minimum Working Model Design
 
-This document defines the first draft of the `harness-kit` working layer.
+This document defines the first draft of the `wayrail` working layer.
 
 It exists to answer one question before starter installation is designed in detail:
 
-What is the minimum operating model that an agent should follow inside a `harness-kit` repository?
+What is the minimum operating model that an agent should follow inside a `wayrail` repository?
 
 This is not yet the final file layout or starter implementation plan.
 It is the contract design that later shapes:
@@ -27,13 +27,13 @@ It is the contract design that later shapes:
 Installation is a delivery mechanism.
 The working model is the thing being delivered.
 
-If `harness-kit` defines installation first, it risks producing a visible but empty starter:
+If `wayrail` defines installation first, it risks producing a visible but empty starter:
 
 - folders without a clear operating meaning
 - agent instructions without a real workflow behind them
 - setup commands that create files but not a standard way of working
 
-The community projects studied for `harness-kit` all converge on the same pattern:
+The community projects studied for `wayrail` all converge on the same pattern:
 
 - install or setup the workflow
 - define the work before implementation
@@ -41,7 +41,7 @@ The community projects studied for `harness-kit` all converge on the same patter
 - verify and review with fresh context
 - record learnings so later work improves
 
-This design makes that pattern explicit for `harness-kit`.
+This design makes that pattern explicit for `wayrail`.
 
 ## Best-Practice Basis
 
@@ -66,7 +66,7 @@ Relevant external sources:
 
 ## Design Summary
 
-`harness-kit` should treat the working layer as a minimum contract with six parts:
+`wayrail` should treat the working layer as a minimum contract with six parts:
 
 1. `stage model`
 2. `artifact model`
@@ -532,7 +532,7 @@ Recommended authority order:
 
 1. repository-local contract files
 2. repository-local plans and specs for the current change
-3. starter defaults shipped by `harness-kit`
+3. starter defaults shipped by `wayrail`
 4. host-specific behavior or global defaults
 
 Implications:
@@ -564,7 +564,7 @@ The rule should be simple:
 
 ## Recommended Minimum Lifecycle
 
-The preferred core lifecycle for `harness-kit` is:
+The preferred core lifecycle for `wayrail` is:
 
 `spec -> plan -> implement -> verify -> review`
 
@@ -621,7 +621,7 @@ This does not yet force final path names, but it does imply that a future starte
 
 - `README.md`
 - `AGENTS.md`
-- `harness-kit.yaml`
+- `wayrail.yaml`
 
 Those are only entry surfaces.
 The working model requires homes for stage artifacts.
@@ -680,7 +680,7 @@ The exact starter artifact shapes, initial memory model, and script-backed spec 
 
 ## Recommendation
 
-Adopt this draft as the current `harness-kit` minimum working model for Phase 1 design work.
+Adopt this draft as the current `wayrail` minimum working model for Phase 1 design work.
 
 Then use it to drive the next two decisions in order:
 

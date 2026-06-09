@@ -1,4 +1,0 @@
-interface:
-  display_name: "hk-plan"
-  short_description: "Write a harness-kit implementation plan"
-  default_prompt: "Use $hk-plan to convert a ready harness-kit spec item into plan.md."

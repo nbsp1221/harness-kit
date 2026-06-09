@@ -1,0 +1,4 @@
+interface:
+  display_name: "wr-verify"
+  short_description: "Write wayrail verification evidence"
+  default_prompt: "Use $wr-verify to verify an implemented wayrail spec item and write verification.md."

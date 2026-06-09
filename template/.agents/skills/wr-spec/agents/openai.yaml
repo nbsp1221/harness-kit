@@ -1,0 +1,4 @@
+interface:
+  display_name: "wr-spec"
+  short_description: "Start a wayrail spec item"
+  default_prompt: "Use $wr-spec to create a new wayrail spec item."

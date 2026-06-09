@@ -22,7 +22,7 @@ depth: dossier
 - task and agent orchestration
 - a separate long-lived `ohmo` personal-agent stack
 
-For `harness-kit`, the value is not in copying the whole platform. The value is in studying:
+For `wayrail`, the value is not in copying the whole platform. The value is in studying:
 
 - profile and auth separation
 - tool-gated control
@@ -42,7 +42,7 @@ This is a strong conceptual lesson. It suggests a clean split between:
 - generic runtime substrate
 - opinionated product or operator layer
 
-That makes it valuable architecturally even when it is too broad for `harness-kit` v1.
+That makes it valuable architecturally even when it is too broad for `wayrail` v1.
 
 ## Source Snapshot
 
@@ -196,7 +196,7 @@ OpenHarness includes:
 - task manager
 - command registry integrations for task and agent control
 
-This is far beyond `harness-kit` v1 scope, but it is useful as a model of what a mature runtime can own.
+This is far beyond `wayrail` v1 scope, but it is useful as a model of what a mature runtime can own.
 
 ### `ohmo` Gateway Workflows
 
@@ -276,7 +276,7 @@ Memory is:
 - hashed per project/workspace
 - injected via `MEMORY.md`
 
-This is especially relevant to `harness-kit`, because it shows a path between:
+This is especially relevant to `wayrail`, because it shows a path between:
 
 - no memory
 - and a heavy DB-backed memory service
@@ -367,7 +367,7 @@ This is powerful, but also far heavier than a starter.
 | `ohmo/gateway/runtime.py` | per-session runtime bundles | chat runtime |
 | `ohmo/gateway/service.py` | gateway control plane | availability and recovery |
 
-## Design Lessons For Harness Kit
+## Design Lessons For Wayrail
 
 ### What To Steal
 
@@ -386,12 +386,12 @@ This is powerful, but also far heavier than a starter.
 
 ### Unclear Or Conditional Lessons
 
-- `ohmo` may eventually be a separate downstream product layer for `harness-kit`, but probably not in v1
+- `ohmo` may eventually be a separate downstream product layer for `wayrail`, but probably not in v1
 - auto-compaction is attractive, but a lighter checkpoint and learnings approach may be enough initially
 
 ## Open Questions
 
-- Should `harness-kit` ever grow a separate “personal layer” on top of the core harness?
+- Should `wayrail` ever grow a separate “personal layer” on top of the core harness?
 - How much of OpenHarness’s compaction logic can be simplified into starter-level artifacts?
 - Is profile/auth separation necessary in v1 or only once multiple providers matter?
 
@@ -496,7 +496,7 @@ This makes it a layered product:
 - core harness
 - personal-agent layer
 
-That split is useful to remember when deciding what `harness-kit` should or should not own.
+That split is useful to remember when deciding what `wayrail` should or should not own.
 
 ## Evidence Map
 

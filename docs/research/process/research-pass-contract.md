@@ -31,8 +31,8 @@ The goal is not to fully reverse-engineer every repository. The goal is to gathe
   - memory and compounding model
   - strengths
   - weaknesses
-  - what `harness-kit` should steal
-  - what `harness-kit` should avoid
+  - what `wayrail` should steal
+  - what `wayrail` should avoid
 - `comparisons/feature-matrix.md` is updated with less speculative ratings
 - `comparisons/overview.md` reflects the current best ranking and rationale
 - `comparisons/adoption-notes.md` reflects likely v1 inclusions, partial inclusions, and exclusions
@@ -43,7 +43,7 @@ Subagents must return:
 
 - concrete file paths
 - concise findings tied to those files
-- why each finding matters for `harness-kit`
+- why each finding matters for `wayrail`
 - unresolved questions where evidence is incomplete
 
 Evidence should prefer:

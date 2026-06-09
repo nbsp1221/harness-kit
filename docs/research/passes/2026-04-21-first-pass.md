@@ -6,7 +6,7 @@ This document records the upstream snapshots used for the first benchmark pass.
 
 - Pass id: `2026-04-21-first-pass`
 - Capture date: `2026-04-21`
-- Working clone root during research: `/tmp/harness-kit-research`
+- Working clone root during research: `/tmp@retn0/wayrail-research`
 - Research mode: shallow clone, read-only exploration, parent synthesis into `docs/research/**`
 
 ## Source Snapshots

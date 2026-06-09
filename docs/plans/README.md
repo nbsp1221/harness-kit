@@ -1,6 +1,6 @@
 # Plans
 
-This directory holds concrete design and implementation plans for `harness-kit`.
+This directory holds concrete design and implementation plans for `wayrail`.
 
 Use this directory when a roadmap capability has been chosen and needs:
 

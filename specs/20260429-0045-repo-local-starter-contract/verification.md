@@ -32,7 +32,7 @@ The starter templates, starter scripts, conflict behavior, JSON output, and doct
 
 ## Manual Validation
 
-- Inspected generated file list under `template/`, `scripts/harness-kit/`, and `tests/`.
+- Inspected generated file list under `template/`, `scripts/wayrail/`, and `tests/`.
 - Confirmed no generated `__pycache__` or `.pyc` files remain after test execution.
 - Confirmed smoke adoption report preserves an existing divergent `AGENTS.md` by reporting `conflict` and `safe_to_apply: false`.
 - Confirmed dry-run does not create a missing target directory.
@@ -49,7 +49,7 @@ None.
 ## Remaining Risk
 
 - The scripts assume Python 3 is available.
-- The current implementation validates `harness-kit.yaml` by required text snippets rather than a full YAML parser.
+- The current implementation validates `wayrail.yaml` by required text snippets rather than a full YAML parser.
 - Directory conflict handling is intentionally simple and file-oriented for Phase 1.
 
 ## Review Handoff
@@ -58,12 +58,12 @@ Verdict: pass
 Evidence artifacts:
 - `tests/test_starter_scripts.py`
 - `template/`
-- `scripts/harness-kit/`
+- `scripts/wayrail/`
 - this `verification.md`
 
 Suggested review focus:
-- non-destructive conflict behavior in `scripts/harness-kit/_lib/starter.py`
+- non-destructive conflict behavior in `scripts/wayrail/_lib/starter.py`
 - whether downstream template wording is sufficiently thin
 - whether doctor should require or only report product-side starter scripts in future phases
 
-Recommended next action: hk-review
+Recommended next action: wr-review

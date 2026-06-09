@@ -1,0 +1,4 @@
+interface:
+  display_name: "wr-plan"
+  short_description: "Write a wayrail implementation plan"
+  default_prompt: "Use $wr-plan to convert a ready wayrail spec item into plan.md."

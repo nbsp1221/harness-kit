@@ -13,7 +13,7 @@ depth: dossier
 
 ## Executive Summary
 
-`Archon` is the clearest workflow-engine benchmark in the current research set. It is broader than `harness-kit` v1, but it provides the best reference for:
+`Archon` is the clearest workflow-engine benchmark in the current research set. It is broader than `wayrail` v1, but it provides the best reference for:
 
 - declarative workflow artifacts
 - config precedence
@@ -21,7 +21,7 @@ depth: dossier
 - durable run and event state
 - lifecycle operations such as resume, approval, and cleanup
 
-For `harness-kit`, the most reusable ideas are:
+For `wayrail`, the most reusable ideas are:
 
 - bundled < global < project precedence
 - DAG workflow structure
@@ -43,7 +43,7 @@ That means it exists at a different layer from:
 - `compound-engineering-plugin`
 - `superpowers`
 
-Its value to `harness-kit` is therefore architectural rather than stylistic.
+Its value to `wayrail` is therefore architectural rather than stylistic.
 
 It answers questions like:
 
@@ -101,7 +101,7 @@ The setup path intentionally writes:
 - Archon-owned env files
 - not the raw repo `.env`
 
-This is an important boundary lesson for `harness-kit`.
+This is an important boundary lesson for `wayrail`.
 
 ## Artifact Inventory
 
@@ -162,7 +162,7 @@ Archon also exposes workflow surfaces through:
 - Telegram
 - Discord
 
-This breadth is not needed for `harness-kit` v1, but it shows the advantage of durable workflow artifacts: many surfaces can reuse them.
+This breadth is not needed for `wayrail` v1, but it shows the advantage of durable workflow artifacts: many surfaces can reuse them.
 
 ### Workflow Discovery
 
@@ -225,7 +225,7 @@ Archon’s control surfaces are among the clearest in the set.
 - cycles
 - legacy incompatible shapes
 
-This is exactly the kind of hard gate `harness-kit` should imitate conceptually.
+This is exactly the kind of hard gate `wayrail` should imitate conceptually.
 
 ### Path and Isolation Safety
 
@@ -247,7 +247,7 @@ Recovery includes:
 - approval pause and resume
 - explicit abandon paths
 
-This is far beyond v1 scope for `harness-kit`, but still an excellent reference.
+This is far beyond v1 scope for `wayrail`, but still an excellent reference.
 
 ## Code Hotspots
 
@@ -268,7 +268,7 @@ This is far beyond v1 scope for `harness-kit`, but still an excellent reference.
 | `migrations/012_workflow_events.sql` | event schema | replay support |
 | `migrations/020_codebase_env_vars.sql` | per-codebase env schema | scoped runtime config |
 
-## Design Lessons For Harness Kit
+## Design Lessons For Wayrail
 
 ### What To Steal
 
@@ -286,14 +286,14 @@ This is far beyond v1 scope for `harness-kit`, but still an excellent reference.
 
 ### Unclear Or Conditional Lessons
 
-- a lighter local workflow artifact system may be enough for `harness-kit`
+- a lighter local workflow artifact system may be enough for `wayrail`
 - some lifecycle operations like resume and rerun may belong in v2 or later
 
 ## Open Questions
 
 - How much of Archon’s power depends on the DB versus the workflow model itself?
 - What is the minimum viable subset of its precedence model for a starter?
-- Does `harness-kit` need named workflow nodes at all in v1?
+- Does `wayrail` need named workflow nodes at all in v1?
 
 ## Appendix A: Structure Pass Notes
 
@@ -366,7 +366,7 @@ Archon supports:
 - Homebrew
 - Docker-adjacent deployment
 
-This breadth is not relevant to `harness-kit` v1 directly, but it does show how a workflow engine grows once it becomes a platform.
+This breadth is not relevant to `wayrail` v1 directly, but it does show how a workflow engine grows once it becomes a platform.
 
 ### Config Precedence As Bootstrap
 
@@ -446,19 +446,19 @@ Archon responsibilities:
 - isolation ledgers
 - UI and API surfaces
 
-This distinction is important because it keeps `harness-kit` from drifting into platform scope too early.
+This distinction is important because it keeps `wayrail` from drifting into platform scope too early.
 
 ## Appendix F: High-Yield Follow-Up Questions
 
-- Which subset of node types would actually matter for `harness-kit` if it ever gained workflow artifacts?
+- Which subset of node types would actually matter for `wayrail` if it ever gained workflow artifacts?
 - How much of the resume logic depends on the DB, and how much depends only on the workflow graph plus event log?
-- Does `harness-kit` need named workflow runs at all, or only step/checkpoint artifacts?
+- Does `wayrail` need named workflow runs at all, or only step/checkpoint artifacts?
 - Which cleanup guarantees are most worth copying before any workflow engine exists?
 - What is the smallest precedence model that still captures the useful part of bundled < global < project?
 
-## Appendix G: Minimal Archon Slice For Harness Kit
+## Appendix G: Minimal Archon Slice For Wayrail
 
-If `harness-kit` only copied the smallest useful Archon slice, it would likely include:
+If `wayrail` only copied the smallest useful Archon slice, it would likely include:
 
 - precedence rules
 - validation-before-run discipline

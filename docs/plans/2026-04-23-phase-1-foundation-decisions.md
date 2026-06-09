@@ -7,7 +7,7 @@ owner: repository maintainer
 
 # Phase 1 Foundation Decisions
 
-This document records the major design decisions already agreed during `harness-kit` Phase 1 discussions.
+This document records the major design decisions already agreed during `wayrail` Phase 1 discussions.
 
 It exists so these decisions do not remain trapped in one session.
 It is a decision record for current direction, not a final implementation plan.
@@ -19,18 +19,18 @@ For now, this document captures what has already been decided strongly enough to
 
 The purpose of this record is to freeze the current answers to these questions:
 
-- what `harness-kit` is trying to be
+- what `wayrail` is trying to be
 - what it is explicitly not trying to be
 - what must be designed before installation work begins
 - what the minimum workflow should be
 - how repository artifacts should be organized
-- how the `harness-kit` repository itself should be separated from downstream installed assets
+- how the `wayrail` repository itself should be separated from downstream installed assets
 
 ## Product Direction
 
-### Decision: `harness-kit` is a repo-local starter and contract system
+### Decision: `wayrail` is a repo-local starter and contract system
 
-`harness-kit` is not being designed as:
+`wayrail` is not being designed as:
 
 - a full agent runtime platform
 - a dashboard or control plane
@@ -65,7 +65,7 @@ The roadmap should stay phase-based rather than date-based.
 
 Current canonical roadmap:
 
-- [Harness Kit Roadmap](../roadmap/README.md)
+- [Wayrail Roadmap](../roadmap/README.md)
 
 ### Decision: Phase 1 must define the working layer before the installation layer
 
@@ -85,7 +85,7 @@ This means the order for Phase 1 is:
 
 ### Decision: the initial core workflow is `spec -> plan -> implement -> verify -> review`
 
-This is the current recommended minimum workflow for `harness-kit`.
+This is the current recommended minimum workflow for `wayrail`.
 
 It reflects the shared pressure observed in benchmark projects:
 
@@ -299,25 +299,25 @@ File responsibilities:
 
 `verification.md` is preferred over `verify.md` because this is a document artifact, not a command name.
 
-### Decision: scaffold the full spec item, but only author `spec.md` during `hk-spec`
+### Decision: scaffold the full spec item, but only author `spec.md` during `wr-spec`
 
-`hk-spec` should not rely on the agent to manually create timestamped directories or lifecycle artifact files.
+`wr-spec` should not rely on the agent to manually create timestamped directories or lifecycle artifact files.
 Those mechanics should be handled by a deterministic script shipped with the skill.
 
-The `hk-spec` skill should split responsibilities this way:
+The `wr-spec` skill should split responsibilities this way:
 
 - a co-located script creates `specs/<YYYYMMDD-HHMM-short-slug>/`
 - the script creates `spec.md`, `plan.md`, `verification.md`, and `review.md`
 - the script initializes frontmatter and path-derived values such as `spec_id`, `created_at`, and `timezone`
 - the agent writes meaningful content only into `spec.md`
-- `plan.md`, `verification.md`, and `review.md` remain minimal stubs until `hk-plan`, `hk-verify`, and `hk-review` run
+- `plan.md`, `verification.md`, and `review.md` remain minimal stubs until `wr-plan`, `wr-verify`, and `wr-review` run
 
 The stub files should be intentionally thin, for example:
 
 ```markdown
 # <Title> Plan
 
-Not started. Run hk-plan.
+Not started. Run wr-plan.
 ```
 
 This keeps the lifecycle directory complete from the beginning without pretending that later stages have already been performed.
@@ -326,10 +326,10 @@ It also keeps path, timestamp, and template creation out of the model's judgment
 This matches the useful part of `spec-kit`'s approach: deterministic tooling creates the feature directory and seed files, while the agent performs the semantic requirements work.
 Phase 1 should not copy heavier state machinery such as a current-feature registry or checklist system until repeated use shows that the workflow needs it.
 
-### Decision: make the `hk-spec` scaffold script agent-readable and conservative
+### Decision: make the `wr-spec` scaffold script agent-readable and conservative
 
 The scaffold script should have a small, explicit interface.
-The skill-facing command can be named `scripts/new-spec-item` inside the `hk-spec` skill; a future CLI wrapper can expose the same behavior under a public command name.
+The skill-facing command can be named `scripts/new-spec-item` inside the `wr-spec` skill; a future CLI wrapper can expose the same behavior under a public command name.
 
 Recommended interface:
 
@@ -374,7 +374,7 @@ Template resolution should stay simple:
 3. built-in fallback stub
 
 This borrows the useful conventions from `spec-kit`'s scaffold scripts, especially required description input, `--json`, `--dry-run`, slug override, and conservative collision handling.
-It intentionally avoids `spec-kit`'s branch creation, sequential numbering, persisted current-feature state, and preset or extension template resolver because those are too heavy for `harness-kit` Phase 1.
+It intentionally avoids `spec-kit`'s branch creation, sequential numbering, persisted current-feature state, and preset or extension template resolver because those are too heavy for `wayrail` Phase 1.
 
 The preferred implementation target is Python 3 with only the standard library.
 That keeps JSON output, path handling, slug normalization, timestamp formatting, and tests portable without maintaining parallel Bash and PowerShell implementations.
@@ -429,12 +429,12 @@ Section responsibilities:
 
 Implementation details belong in `plan.md` unless the spec item itself is about choosing a product or architecture direction.
 
-### Decision: make `hk-spec` a clarification and readiness gate, not a planning shortcut
+### Decision: make `wr-spec` a clarification and readiness gate, not a planning shortcut
 
-`hk-spec` should produce a self-contained spec that a fresh agent can use without chat history.
+`wr-spec` should produce a self-contained spec that a fresh agent can use without chat history.
 It should not produce implementation sequencing, file-by-file plans, technical design, or validation command recipes.
 
-Recommended `hk-spec` procedure:
+Recommended `wr-spec` procedure:
 
 1. Start from a title or short feature description.
 2. Run the scaffold script with `--json` and use the returned `spec_file`.
@@ -454,7 +454,7 @@ Clarification policy:
 - do not ask about implementation mechanics unless they are explicit product constraints
 - do not hide product decisions as technical assumptions
 
-Phase 1 should not introduce a separate `hk-clarify` skill.
+Phase 1 should not introduce a separate `wr-clarify` skill.
 If a spec is not ready for planning, unresolved issues stay in `Open Questions` under `Resolve Before Planning`.
 
 Recommended lightweight ID policy:
@@ -465,9 +465,9 @@ Recommended lightweight ID policy:
 - `Q1`, `Q2`, `Q3` for open questions
 
 Do not require separate user-story, functional, non-functional, edge-case, and acceptance-scenario ID families in Phase 1.
-Those are valid for heavier spec-driven systems, but they add bookkeeping before `harness-kit` has proven that it needs that detail.
+Those are valid for heavier spec-driven systems, but they add bookkeeping before `wayrail` has proven that it needs that detail.
 
-Readiness criteria before handoff to `hk-plan`:
+Readiness criteria before handoff to `wr-plan`:
 
 - requirements are concrete enough to plan from
 - success criteria are measurable or objectively reviewable
@@ -482,15 +482,15 @@ The spec should end with a compact handoff block:
 ```markdown
 ## Planning Handoff
 
-Status: Ready for hk-plan
+Status: Ready for wr-plan
 Spec path: specs/<YYYYMMDD-HHMM-short-slug>/spec.md
 Open questions: none
 Key assumptions: A1
 Requirement index: R1, R2, R3
-Recommended next action: hk-plan
+Recommended next action: wr-plan
 ```
 
-If the spec is blocked, `Status` should be `Blocked before hk-plan`, and `Recommended next action` should describe the human decision needed.
+If the spec is blocked, `Status` should be `Blocked before wr-plan`, and `Recommended next action` should describe the human decision needed.
 
 ### Decision: keep `plan.md` compact and implementation-design oriented
 
@@ -542,16 +542,16 @@ Section responsibilities:
 
 `plan.md` should not own lifecycle frontmatter in Phase 1. The single source of truth for spec item `status` and `stage` remains `spec.md` frontmatter.
 
-### Decision: make `hk-plan` a design-and-handoff skill, not a task generator
+### Decision: make `wr-plan` a design-and-handoff skill, not a task generator
 
-`hk-plan` should consume `spec.md` and write `plan.md`.
+`wr-plan` should consume `spec.md` and write `plan.md`.
 It should not implement code, run verification, or create a separate task database in Phase 1.
 
-Recommended `hk-plan` procedure:
+Recommended `wr-plan` procedure:
 
 1. Load an explicit spec path or the current spec item path provided by the user or previous handoff.
 2. Check `Planning Handoff`.
-3. Stop if the spec is not ready for `hk-plan` or if `Resolve Before Planning` questions remain.
+3. Stop if the spec is not ready for `wr-plan` or if `Resolve Before Planning` questions remain.
 4. Read the spec sections that define problem, requirements, success criteria, scope, constraints, assumptions, and open questions.
 5. Do bounded repository research before writing:
    - inspect relevant docs and likely target files
@@ -579,7 +579,7 @@ Recommended unit shape:
 ```
 
 Do not create `tasks.md` in Phase 1.
-Spec Kit's separate task-generation stage is useful evidence that task breakdown can be valuable, but `harness-kit` should first prove the lighter spec-to-plan contract before adding another artifact or skill.
+Spec Kit's separate task-generation stage is useful evidence that task breakdown can be valuable, but `wayrail` should first prove the lighter spec-to-plan contract before adding another artifact or skill.
 
 Readiness criteria before implementation:
 
@@ -593,8 +593,8 @@ Readiness criteria before implementation:
 - remaining unknowns are either implementation-time risks or explicit human-owned blockers
 - the implementer should not need to invent product behavior
 
-Verification planning belongs in `hk-plan`, but verification evidence does not.
-Actual command execution, results, skipped checks, and remaining verification risk belong in `hk-verify`.
+Verification planning belongs in `wr-plan`, but verification evidence does not.
+Actual command execution, results, skipped checks, and remaining verification risk belong in `wr-verify`.
 
 ### Decision: make `verification.md` an evidence summary, not a raw log
 
@@ -646,12 +646,12 @@ Allowed per-check result labels should start small:
 
 Full logs should stay out of `verification.md` unless they are short and necessary. Prefer concise excerpts, counts, command names, exit status, and links or paths to external artifacts when they exist.
 
-### Decision: make `hk-verify` a fresh-evidence writer, not a fixer or reviewer
+### Decision: make `wr-verify` a fresh-evidence writer, not a fixer or reviewer
 
-`hk-verify` should read `spec.md` and `plan.md`, inspect the implemented workspace, run the planned verification checks, and write `verification.md`.
+`wr-verify` should read `spec.md` and `plan.md`, inspect the implemented workspace, run the planned verification checks, and write `verification.md`.
 It should not edit source code, update tests, change plans, approve work, or decide whether remaining risk is acceptable.
 
-Recommended `hk-verify` procedure:
+Recommended `wr-verify` procedure:
 
 1. Read `spec.md` and `plan.md`.
 2. Extract planned checks, expected outcomes, requirement links, and implementation-unit links.
@@ -661,7 +661,7 @@ Recommended `hk-verify` procedure:
 6. For manual validation, record scenario, method, observer, expected result, observed result, and evidence.
 7. Keep running independent checks after a failure when it is safe, so the report gives a full evidence picture.
 8. Write `verification.md`.
-9. Hand off to `hk-review` only when the evidence is legible enough for a fresh reviewer to assess.
+9. Hand off to `wr-review` only when the evidence is legible enough for a fresh reviewer to assess.
 
 Command derivation order:
 
@@ -694,7 +694,7 @@ Skipped or blocked checks require:
 - residual risk
 - owner or next step
 
-`hk-verify` should allow writes only to `verification.md` and optional evidence artifacts such as log files or screenshots.
+`wr-verify` should allow writes only to `verification.md` and optional evidence artifacts such as log files or screenshots.
 Operational setup or cleanup may run if it is required for a planned check and is recorded, but implementation changes must route back to the implementation step and then be verified again from fresh evidence.
 
 Raw logs should not be pasted into `verification.md` by default.
@@ -712,11 +712,11 @@ Failed or blocked checks:
 - V2
 Suggested review focus:
 - areas with manual-only or missing evidence
-Recommended next action: return to implementation or continue to hk-review
+Recommended next action: return to implementation or continue to wr-review
 ```
 
 Humans decide whether to accept skipped checks, waive failed or blocked checks, accept remaining risk, or proceed to review with incomplete evidence.
-`hk-verify` may recommend, but it should not grant those waivers.
+`wr-verify` may recommend, but it should not grant those waivers.
 
 ### Decision: make `review.md` a fresh-context findings and resolution record
 
@@ -779,12 +779,12 @@ Initial resolution labels should stay small:
 
 If there are no findings, `review.md` should say that explicitly and still record scope, reviewer, and verdict.
 
-### Decision: make `hk-review` a read-only fresh-context quality gate
+### Decision: make `wr-review` a read-only fresh-context quality gate
 
-`hk-review` should read the lifecycle artifacts and the current implementation diff, then write `review.md`.
+`wr-review` should read the lifecycle artifacts and the current implementation diff, then write `review.md`.
 It should not fix implementation issues, waive verification gaps, merge, approve release, or change scope.
 
-Recommended `hk-review` procedure:
+Recommended `wr-review` procedure:
 
 1. Read `spec.md`, `plan.md`, `verification.md`, and the current workspace diff, including untracked files when relevant.
 2. Reconstruct intent from artifacts, not from the implementer's hidden session history.
@@ -842,7 +842,7 @@ Open `P0` and `P1` findings block a ready verdict.
 `P2` findings should be fixed when straightforward or intentionally deferred.
 `P3` findings do not block by default.
 
-`hk-review` should treat `verification.md` as evidence, not truth.
+`wr-review` should treat `verification.md` as evidence, not truth.
 It should flag planned checks not run, failed checks marked acceptable without rationale, weak manual validation, evidence that does not map to requirements, and risky changed areas with no verification coverage.
 
 Verdicts should use:
@@ -852,7 +852,7 @@ Verdicts should use:
 - `not-ready`: open `P0` or `P1`, missing core requirement, failed required verification, or unresolved human decision
 
 If there are no findings, `review.md` must still state the reviewed scope, reviewers, verification evidence considered, residual risk, and verdict.
-`hk-review` may say "ready for human approval", but it must not claim human approval.
+`wr-review` may say "ready for human approval", but it must not claim human approval.
 
 ### Decision: use minimal `spec.md` frontmatter for Phase 1 status
 
@@ -901,12 +901,12 @@ Initial status should live in `spec.md` frontmatter. Runtime-oriented state such
 
 ## Repository Structure Direction
 
-### Decision: separate `harness-kit` product files from downstream installed files
+### Decision: separate `wayrail` product files from downstream installed files
 
 The repository needs to distinguish between:
 
-1. files used to build `harness-kit` itself
-2. files that `harness-kit` will install into other repositories
+1. files used to build `wayrail` itself
+2. files that `wayrail` will install into other repositories
 
 This separation is necessary because their responsibilities differ.
 
@@ -921,7 +921,7 @@ Examples of product-side files:
 Examples of downstream installed files:
 
 - `AGENTS.md`
-- `harness-kit.yaml`
+- `wayrail.yaml`
 - workflow artifact scaffolding
 - memory scaffolding
 
@@ -936,9 +936,9 @@ Current direction:
 - use a single `template/` directory if template assets are needed
 - introduce variant layering only when real usage pressure appears
 
-### Decision: introduce a minimal `harness-kit.yaml` schema in Phase 1
+### Decision: introduce a minimal `wayrail.yaml` schema in Phase 1
 
-`harness-kit.yaml` is already part of the required starter surface, so it should have a minimal schema from the beginning.
+`wayrail.yaml` is already part of the required starter surface, so it should have a minimal schema from the beginning.
 The schema should be versioned, but it should not try to model every future host, hook, runtime, or policy option.
 
 Recommended Phase 1 minimum:
@@ -972,19 +972,19 @@ Do not add host-specific keys, hook configuration, runtime state, or tool instal
 
 ### Decision: keep repo-local config authoritative; defer global config
 
-`harness-kit.yaml` should be the only authoritative shared configuration contract through Phase 2.
-Do not introduce `~/.harness-kit/config.yaml`, `$XDG_CONFIG_HOME/harness-kit/config.yaml`, or `harness-kit.local.yaml` yet.
+`wayrail.yaml` should be the only authoritative shared configuration contract through Phase 2.
+Do not introduce `~/.wayrail/config.yaml`, `$XDG_CONFIG_HOME@retn0/wayrail/config.yaml`, or `wayrail.local.yaml` yet.
 
 Effective configuration order for the near term:
 
 1. built-in defaults
-2. repo-local `harness-kit.yaml`
+2. repo-local `wayrail.yaml`
 3. explicit one-shot invocation overrides, if a script or future CLI exposes them
 
 This is intentionally simpler than a mature CLI precedence stack.
 The repo should be able to explain its harness contract from committed files alone.
 
-Committed `harness-kit.yaml` may contain:
+Committed `wayrail.yaml` may contain:
 
 - schema version
 - artifact roots and lifecycle paths
@@ -1025,7 +1025,7 @@ Recommended product-side template source:
 template/
   README.md
   AGENTS.md
-  harness-kit.yaml
+  wayrail.yaml
   docs/
     roadmap/
       README.md
@@ -1044,7 +1044,7 @@ Installation notes:
 
 - `README.md` is bootstrap-oriented and must not overwrite an existing README during adoption
 - `AGENTS.md` is the thin agent entrypoint
-- `harness-kit.yaml` is the repo-local configuration anchor
+- `wayrail.yaml` is the repo-local configuration anchor
 - `docs/roadmap/README.md` gives downstream projects a direction-setting home without copying this product repo's roadmap
 - `specs/.gitkeep` preserves the artifact root before any spec item exists
 - `specs/_templates/` gives humans and agents visible artifact templates without creating a fake spec item
@@ -1063,14 +1063,14 @@ Comparable systems show the main risk clearly:
 - `oh-my-codex` preserves existing `AGENTS.md` unless force or interactive approval is used
 - `compound-engineering` setup diagnoses first, then asks before creating or deleting local project files
 
-`harness-kit` should default to the conservative side because adoption into existing repositories is a first-class use case.
+`wayrail` should default to the conservative side because adoption into existing repositories is a first-class use case.
 
 `bootstrap` behavior:
 
 - intended for a new or empty repository
 - creates the Phase 1 template artifacts
 - writes `README.md` only when absent
-- creates `AGENTS.md`, `harness-kit.yaml`, `docs/roadmap/README.md`, `specs/`, `specs/_templates/`, and `memory/learnings.md`
+- creates `AGENTS.md`, `wayrail.yaml`, `docs/roadmap/README.md`, `specs/`, `specs/_templates/`, and `memory/learnings.md`
 - does not create a timestamped spec item by default
 - does not install hooks, host-specific config, runtime state, or task databases
 - stops on conflicting existing files unless the later CLI provides an explicit force or merge mode
@@ -1142,8 +1142,8 @@ The scripts should still be designed as if a thin CLI wrapper may call them late
 
 Phase 1 entrypoint policy:
 
-- starter operations live under `scripts/harness-kit/`
-- skill-local deterministic tools live inside the relevant skill, such as `hk-spec/scripts/new-spec-item`
+- starter operations live under `scripts/wayrail/`
+- skill-local deterministic tools live inside the relevant skill, such as `wr-spec/scripts/new-spec-item`
 - scripts provide `--help`, `--dry-run`, and `--json` where useful
 - structured machine-readable data goes to stdout in JSON mode
 - diagnostics go to stderr
@@ -1151,7 +1151,7 @@ Phase 1 entrypoint policy:
 - exit codes are meaningful and tested
 - command output stays bounded and agent-readable
 
-Do not introduce a packaged `hk` or `harness-kit` CLI in Phase 1.
+Do not introduce a packaged `hk` or `wayrail` CLI in Phase 1.
 The future CLI should be a thin wrapper over the same script contracts once the workflow has proven stable.
 
 Introduce a CLI later only when one or more of these become true:
@@ -1167,17 +1167,17 @@ The future binary name, package channel, and public distribution timing remain p
 
 ### Decision: make `doctor` a read-only starter contract validator
 
-`doctor` should validate whether a repository satisfies the visible `harness-kit` contract.
+`doctor` should validate whether a repository satisfies the visible `wayrail` contract.
 It should not claim full runtime readiness, run project verification commands by default, install tools, repair files, or approve work.
 
-Phase 1 may ship `scripts/harness-kit/doctor` as a small read-only checker.
+Phase 1 may ship `scripts/wayrail/doctor` as a small read-only checker.
 If it does not ship immediately, the reserved path and contract should still be documented.
 
 Initial check categories:
 
 - `environment`: git availability, repo root detection, supported OS note, and basic path facts
 - `starter_integrity`: required starter files and directories exist
-- `config`: `harness-kit.yaml` exists, parses, and has the minimum Phase 1 keys
+- `config`: `wayrail.yaml` exists, parses, and has the minimum Phase 1 keys
 - `artifact_shape`: `specs/`, `specs/_templates/`, and the four lifecycle templates are recognizable
 - `workflow_readiness`: repository can host `spec -> plan -> implement -> verify -> review` artifacts
 - `agent_readiness`: `AGENTS.md` exists and appears to be a thin entrypoint, without requiring host-specific config
@@ -1268,10 +1268,10 @@ For non-trivial changes, follow:
 
 Use harness skills when available:
 
-- `hk-spec` to create or update `specs/<id>/spec.md`
-- `hk-plan` to create or update `specs/<id>/plan.md`
-- `hk-verify` to create or update `specs/<id>/verification.md`
-- `hk-review` to create or update `specs/<id>/review.md`
+- `wr-spec` to create or update `specs/<id>/spec.md`
+- `wr-plan` to create or update `specs/<id>/plan.md`
+- `wr-verify` to create or update `specs/<id>/verification.md`
+- `wr-review` to create or update `specs/<id>/review.md`
 
 If the human explicitly skips `spec` or `plan`, record that override in the relevant artifact.
 Do not silently skip verification or review before a completion claim.
@@ -1320,18 +1320,18 @@ They should not be copied into every downstream repository by default.
 Canonical product layout:
 
 ```text
-harness-kit/
+wayrail/
   skills/
-    hk-spec/
+    wr-spec/
       SKILL.md
       scripts/
       assets/
       references/
-    hk-plan/
+    wr-plan/
       SKILL.md
-    hk-verify/
+    wr-verify/
       SKILL.md
-    hk-review/
+    wr-review/
       SKILL.md
   hosts/
     codex/
@@ -1339,7 +1339,7 @@ harness-kit/
       doctor
       uninstall
   scripts/
-    harness-kit/
+    wayrail/
       bootstrap
       adopt
       doctor
@@ -1349,9 +1349,9 @@ harness-kit/
 Default downstream behavior:
 
 - `bootstrap` and `adopt` install the repo-local contract and starter artifacts
-- downstream repositories get `AGENTS.md`, `harness-kit.yaml`, `specs/`, templates, memory, and starter scripts
-- downstream repositories do not receive copies of `hk-*` skills by default
-- downstream `AGENTS.md` may say to use `hk-*` skills when available
+- downstream repositories get `AGENTS.md`, `wayrail.yaml`, `specs/`, templates, memory, and starter scripts
+- downstream repositories do not receive copies of `wr-*` skills by default
+- downstream `AGENTS.md` may say to use `wr-*` skills when available
 
 Host adapter behavior:
 
@@ -1365,17 +1365,17 @@ Project-local skill installation should be an explicit option for pinned, air-ga
 
 Managed install rules:
 
-- namespace installed artifacts under `harness-kit`
+- namespace installed artifacts under `wayrail`
 - write a small manifest for installed skill links or files
 - on update, refresh only manifest-owned artifacts
 - on uninstall, remove only manifest-owned artifacts
 - never delete user-authored skills by name alone
 - `doctor` should report skill visibility separately from repo starter contract health
 
-For local development, symlinks from a Codex skill discovery path to the product repo's `skills/hk-*` directories are acceptable.
+For local development, symlinks from a Codex skill discovery path to the product repo's `skills/wr-*` directories are acceptable.
 For public release, copied plugin payloads or a formal Codex plugin may be safer than raw symlinks.
 
-`harness-kit.yaml` should not require installed skills in Phase 2.
+`wayrail.yaml` should not require installed skills in Phase 2.
 If skill visibility is checked, missing skills should be advisory or warning-level unless the user explicitly requested a skill-driven workflow.
 
 This preserves the core design: the repository contract works from files and scripts alone, while skills improve agent ergonomics when installed.
@@ -1385,7 +1385,7 @@ This preserves the core design: the repository contract works from files and scr
 The repository is expected to grow toward something like this:
 
 ```text
-harness-kit/
+wayrail/
   README.md
   docs/
     roadmap/

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Implement the first usable `harness-kit` starter surface as a repo-local, scripts-first contract.
+Implement the first usable `wayrail` starter surface as a repo-local, scripts-first contract.
 The implementation should add the product-side starter templates, starter scripts, and focused tests needed to install or inspect the downstream starter shape described in `spec.md`.
 
 This plan intentionally stops before packaged CLI distribution, host-specific skill installation, automatic Markdown merging, broad `--force`, hooks, runtime state, or workflow skill implementation.
@@ -12,12 +12,12 @@ This plan intentionally stops before packaged CLI distribution, host-specific sk
 | Spec ID | Requirement | Plan Coverage | Verification |
 | --- | --- | --- | --- |
 | R1 | Thin root `AGENTS.md` | Unit 1 creates `template/AGENTS.md` | Inspect template content and bootstrap output |
-| R2 | Repo-local `harness-kit.yaml` | Unit 1 creates `template/harness-kit.yaml` | Parse YAML or validate expected text keys |
+| R2 | Repo-local `wayrail.yaml` | Unit 1 creates `template/wayrail.yaml` | Parse YAML or validate expected text keys |
 | R3 | `docs/roadmap/README.md` | Unit 1 creates downstream roadmap template | Inspect file exists after bootstrap/adopt |
 | R4 | `specs/` artifact root | Unit 1 and Unit 2 create/preserve `specs/` | Bootstrap/adopt fixture assertions |
 | R5 | Lifecycle templates under `specs/_templates/` | Unit 1 creates four templates | Assert all four files exist |
 | R6 | `memory/learnings.md` | Unit 1 creates learning template | Assert file exists and is non-empty |
-| R7 | `scripts/harness-kit/bootstrap`, `adopt`, `doctor` | Unit 2 adds product scripts | `--help`, `--dry-run`, and fixture runs |
+| R7 | `scripts/wayrail/bootstrap`, `adopt`, `doctor` | Unit 2 adds product scripts | `--help`, `--dry-run`, and fixture runs |
 | R8 | Non-destructive bootstrap/adopt | Unit 3 implements conflict detection | Existing-file fixture assertions |
 | R9 | Agent-readable script behavior | Unit 2 and Unit 3 define JSON output and exit codes | JSON parsing tests |
 | R10 | No broad runtime/platform features | Unit 1-4 keep scope limited | Review file tree and script behavior |
@@ -27,7 +27,7 @@ This plan intentionally stops before packaged CLI distribution, host-specific sk
 In scope for this implementation pass:
 
 - product-side `template/` starter files
-- repo-local starter scripts under `scripts/harness-kit/`
+- repo-local starter scripts under `scripts/wayrail/`
 - script contracts for `bootstrap`, `adopt`, and `doctor`
 - non-destructive file creation and conflict reporting
 - JSON output for agent/script consumption
@@ -36,7 +36,7 @@ In scope for this implementation pass:
 Out of scope for this implementation pass:
 
 - packaged `hk` CLI
-- `hk-spec`, `hk-plan`, `hk-verify`, or `hk-review` skill implementation
+- `wr-spec`, `wr-plan`, `wr-verify`, or `wr-review` skill implementation
 - Codex plugin or host adapter installation
 - automatic Markdown merge
 - broad `--force`
@@ -56,14 +56,14 @@ Relevant source documents:
 Current repository facts:
 
 - No starter `template/` directory exists yet.
-- No product-side `scripts/harness-kit/` directory exists yet.
+- No product-side `scripts/wayrail/` directory exists yet.
 - The repository currently contains planning, roadmap, and research docs plus this first `specs/<id>/` item.
 - The repository has no committed baseline yet, so test fixtures should not rely on existing git history.
 
 Implementation runtime choice:
 
 - Use Python 3 standard library for starter scripts.
-- Keep public script entrypoints at `scripts/harness-kit/bootstrap`, `scripts/harness-kit/adopt`, and `scripts/harness-kit/doctor`.
+- Keep public script entrypoints at `scripts/wayrail/bootstrap`, `scripts/wayrail/adopt`, and `scripts/wayrail/doctor`.
 - The script files may be Python executables with shebangs, or thin executable wrappers around shared Python modules if that keeps tests cleaner.
 
 Suggested product-side helper layout:
@@ -72,7 +72,7 @@ Suggested product-side helper layout:
 template/
   README.md
   AGENTS.md
-  harness-kit.yaml
+  wayrail.yaml
   docs/
     roadmap/
       README.md
@@ -86,7 +86,7 @@ template/
   memory/
     learnings.md
 scripts/
-  harness-kit/
+  wayrail/
     bootstrap
     adopt
     doctor
@@ -95,7 +95,7 @@ tests/
   test_starter_scripts.py
 ```
 
-If shared logic is needed, prefer a small internal module under `scripts/harness-kit/lib/` or `scripts/harness-kit/_lib/` rather than introducing package metadata.
+If shared logic is needed, prefer a small internal module under `scripts/wayrail/lib/` or `scripts/wayrail/_lib/` rather than introducing package metadata.
 
 ## Decisions
 
@@ -116,7 +116,7 @@ If shared logic is needed, prefer a small internal module under `scripts/harness
   - Files:
     - Create `template/README.md`
     - Create `template/AGENTS.md`
-    - Create `template/harness-kit.yaml`
+    - Create `template/wayrail.yaml`
     - Create `template/docs/roadmap/README.md`
     - Create `template/specs/.gitkeep`
     - Create `template/specs/_templates/spec.md`
@@ -128,19 +128,19 @@ If shared logic is needed, prefer a small internal module under `scripts/harness
     - Keep templates concise and downstream-oriented.
     - Use the starter `AGENTS.md` wording from the foundation decision record.
     - Make lifecycle templates match the documented sections.
-    - Avoid host-specific or `harness-kit` product-repo-only text in downstream templates.
+    - Avoid host-specific or `wayrail` product-repo-only text in downstream templates.
   - Verification:
     - Inspect every template path.
-    - Confirm `harness-kit.yaml` contains only Phase 1 keys.
+    - Confirm `wayrail.yaml` contains only Phase 1 keys.
     - Confirm templates do not mention packaged CLI, host plugins, hooks, or runtime state as installed defaults.
 
 - [x] Unit 2: Add shared starter script behavior
   - Requirements: R7, R8, R9, R10
   - Files:
-    - Create `scripts/harness-kit/bootstrap`
-    - Create `scripts/harness-kit/adopt`
-    - Create `scripts/harness-kit/doctor`
-    - Optionally create `scripts/harness-kit/_lib/` for shared Python helpers
+    - Create `scripts/wayrail/bootstrap`
+    - Create `scripts/wayrail/adopt`
+    - Create `scripts/wayrail/doctor`
+    - Optionally create `scripts/wayrail/_lib/` for shared Python helpers
   - Approach:
     - Implement `--help`, `--dry-run`, and `--json` where useful.
     - Accept an explicit target path argument or default to current working directory.
@@ -155,8 +155,8 @@ If shared logic is needed, prefer a small internal module under `scripts/harness
 - [x] Unit 3: Implement bootstrap/adopt creation and conflict policy
   - Requirements: R1, R2, R3, R4, R5, R6, R8, R9
   - Files:
-    - Modify `scripts/harness-kit/bootstrap`
-    - Modify `scripts/harness-kit/adopt`
+    - Modify `scripts/wayrail/bootstrap`
+    - Modify `scripts/wayrail/adopt`
     - Modify shared helper files if introduced
     - Add tests under `tests/`
   - Approach:
@@ -175,11 +175,11 @@ If shared logic is needed, prefer a small internal module under `scripts/harness
 - [x] Unit 4: Implement doctor starter contract validation
   - Requirements: R2, R4, R5, R6, R7, R9, R10
   - Files:
-    - Modify `scripts/harness-kit/doctor`
+    - Modify `scripts/wayrail/doctor`
     - Add tests under `tests/`
   - Approach:
     - Validate setup health only.
-    - Check required starter paths, minimal `harness-kit.yaml` shape, lifecycle template presence, and starter script presence.
+    - Check required starter paths, minimal `wayrail.yaml` shape, lifecycle template presence, and starter script presence.
     - Treat optional integrations as `warn` or `skip`, not `fail`.
     - Do not run project tests, install dependencies, modify files, or perform network checks.
     - Provide stable `--json` shape with `schema_version`, `status`, `repo_root`, `checks`, and `summary`.
@@ -222,18 +222,18 @@ python -m unittest discover -s tests
 Script smoke checks:
 
 ```bash
-scripts/harness-kit/bootstrap --help
-scripts/harness-kit/adopt --help
-scripts/harness-kit/doctor --help
+scripts/wayrail/bootstrap --help
+scripts/wayrail/adopt --help
+scripts/wayrail/doctor --help
 ```
 
 Fixture checks:
 
 ```bash
-scripts/harness-kit/bootstrap --dry-run --json <blank-fixture>
-scripts/harness-kit/bootstrap --json <blank-fixture>
-scripts/harness-kit/adopt --dry-run --json <existing-fixture>
-scripts/harness-kit/doctor --json <bootstrapped-fixture>
+scripts/wayrail/bootstrap --dry-run --json <blank-fixture>
+scripts/wayrail/bootstrap --json <blank-fixture>
+scripts/wayrail/adopt --dry-run --json <existing-fixture>
+scripts/wayrail/doctor --json <bootstrapped-fixture>
 ```
 
 Expected evidence:
@@ -268,5 +268,5 @@ Manual validation:
 Status: Ready for implementation
 Spec path: `specs/20260429-0045-repo-local-starter-contract/spec.md`
 Plan path: `specs/20260429-0045-repo-local-starter-contract/plan.md`
-Primary implementation targets: `template/`, `scripts/harness-kit/`, `tests/`
+Primary implementation targets: `template/`, `scripts/wayrail/`, `tests/`
 Do not implement: workflow skills, packaged CLI, force/merge modes, hooks, runtime platform, or host adapters

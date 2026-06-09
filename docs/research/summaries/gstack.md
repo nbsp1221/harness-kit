@@ -19,13 +19,13 @@ host_focus:
 
 ## Summary
 
-In this first research pass, `gstack` looks like a full role-based engineering operating system with a browser harness, learning logs, dashboards, and host-aware setup. It is not a minimal starter. For `harness-kit`, its value lies in staged routing, durable state, and persistent learning patterns rather than in copying the full surface.
+In this first research pass, `gstack` looks like a full role-based engineering operating system with a browser harness, learning logs, dashboards, and host-aware setup. It is not a minimal starter. For `wayrail`, its value lies in staged routing, durable state, and persistent learning patterns rather than in copying the full surface.
 
 ## Why It Matters
 
 - It is a highly visible public harness project in the current ecosystem.
 - It shows how far role decomposition and persistent state can go before a harness becomes strongly opinionated.
-- It offers valuable review, QA, release, browser, and learning patterns even if `harness-kit` does not adopt the full operating model.
+- It offers valuable review, QA, release, browser, and learning patterns even if `wayrail` does not adopt the full operating model.
 
 ## Snapshot
 
@@ -64,7 +64,7 @@ Observed core stages:
 - ship and deployment
 - learn and state capture
 
-The lesson for `harness-kit` is not “create many roles,” but “make stage boundaries explicit and persistent.”
+The lesson for `wayrail` is not “create many roles,” but “make stage boundaries explicit and persistent.”
 
 ## Bootstrap Model
 
@@ -78,7 +78,7 @@ Observed characteristics:
 - first-run prompts and onboarding behavior are injected
 - browser and related helper services are part of the broader environment
 
-For `harness-kit`, the durable lesson is to make bootstrap deterministic and host-aware, but probably quieter and smaller than gstack's full onboarding ceremony.
+For `wayrail`, the durable lesson is to make bootstrap deterministic and host-aware, but probably quieter and smaller than gstack's full onboarding ceremony.
 
 ## Verification And Control
 
@@ -117,7 +117,7 @@ This is a clear reference for durable, file-backed or log-backed learning in the
 ## Weaknesses
 
 - Much broader than a lean internal starter
-- Role count and browser surface may exceed what `harness-kit` needs
+- Role count and browser surface may exceed what `wayrail` needs
 - First-run prompts and telemetry nudges could add friction if copied directly
 - Browser and security surface introduce extra operational weight
 
@@ -137,7 +137,7 @@ This is a clear reference for durable, file-backed or log-backed learning in the
 ## Open Questions
 
 - Which 20 percent of gstack creates 80 percent of the value for a smaller starter?
-- Does `harness-kit` want durable cross-session state at gstack's level, or only a lighter learning log?
+- Does `wayrail` want durable cross-session state at gstack's level, or only a lighter learning log?
 - How much of the browser surface is essential versus productized convenience?
 
 ## Evidence

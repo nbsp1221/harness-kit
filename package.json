@@ -1,20 +1,38 @@
 {
-  "name": "@retn0/harness-kit",
+  "name": "@retn0/wayrail",
   "version": "0.1.0",
-  "description": "retn0's opinionated harness-kit starter for repo-local agent workflows.",
+  "description": "retn0's opinionated wayrail starter for repo-local agent workflows.",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nbsp1221/harness-kit.git"
+    "url": "git+https://github.com/nbsp1221/wayrail.git"
   },
   "bin": {
-    "harness-kit": "./bin/harness-kit.js",
-    "hks": "./bin/harness-kit.js"
+    "wayrail": "./bin/wayrail.js",
+    "wyr": "./bin/wayrail.js"
   },
   "files": [
     "bin/",
-    "template/",
+    "template/README.md",
+    "template/AGENTS.md",
+    "template/wayrail.yaml",
+    "template/docs/roadmap/README.md",
+    "template/specs/.gitkeep",
+    "template/specs/_templates/spec.md",
+    "template/specs/_templates/plan.md",
+    "template/specs/_templates/verification.md",
+    "template/specs/_templates/review.md",
+    "template/.agents/skills/wr-spec/SKILL.md",
+    "template/.agents/skills/wr-spec/scripts/new-spec-item",
+    "template/.agents/skills/wr-spec/agents/openai.yaml",
+    "template/.agents/skills/wr-plan/SKILL.md",
+    "template/.agents/skills/wr-plan/agents/openai.yaml",
+    "template/.agents/skills/wr-verify/SKILL.md",
+    "template/.agents/skills/wr-verify/agents/openai.yaml",
+    "template/.agents/skills/wr-review/SKILL.md",
+    "template/.agents/skills/wr-review/agents/openai.yaml",
+    "template/memory/learnings.md",
     "README.md"
   ],
   "engines": {

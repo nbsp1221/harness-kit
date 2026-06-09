@@ -1,13 +1,13 @@
 # Research Archive
 
-This directory stores durable research for `harness-kit`.
+This directory stores durable research for `wayrail`.
 
 The goal is not to collect loose notes. The goal is to build a reusable decision archive that answers:
 
 - which existing harness projects matter
 - how each project works
-- what `harness-kit` should copy
-- what `harness-kit` should avoid
+- what `wayrail` should copy
+- what `wayrail` should avoid
 
 ## Structure
 
@@ -79,8 +79,8 @@ docs/research/
 2. Update the relevant file in `dossiers/` when source reconstruction deepens.
 3. Update `comparisons/feature-matrix.md` if the change affects comparative judgment.
 4. Update `comparisons/overview.md` if the ranking or recommended direction changes.
-5. Update `comparisons/adoption-notes.md` when a new design implication for `harness-kit` becomes clear.
+5. Update `comparisons/adoption-notes.md` when a new design implication for `wayrail` becomes clear.
 
 ## Scope
 
-This research archive is focused on open harness systems, workflow plugins, orchestration layers, and agent-development methodologies that materially inform `harness-kit`.
+This research archive is focused on open harness systems, workflow plugins, orchestration layers, and agent-development methodologies that materially inform `wayrail`.

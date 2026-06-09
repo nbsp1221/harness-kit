@@ -24,10 +24,10 @@ For non-trivial changes, follow:
 
 Use harness skills when available:
 
-- `hk-spec` to create or update `specs/<id>/spec.md`
-- `hk-plan` to create or update `specs/<id>/plan.md`
-- `hk-verify` to create or update `specs/<id>/verification.md`
-- `hk-review` to create or update `specs/<id>/review.md`
+- `wr-spec` to create or update `specs/<id>/spec.md`
+- `wr-plan` to create or update `specs/<id>/plan.md`
+- `wr-verify` to create or update `specs/<id>/verification.md`
+- `wr-review` to create or update `specs/<id>/review.md`
 
 If the human explicitly skips `spec` or `plan`, record that override in the relevant artifact.
 Do not silently skip verification or review before a completion claim.

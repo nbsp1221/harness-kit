@@ -13,7 +13,7 @@ depth: dossier
 
 ## Executive Summary
 
-`gstack` is a broad engineering operating system built around roles, a browser daemon, repo policy injection, and durable project memory. It is not a minimal prompt pack and not just a skill library. For `harness-kit`, the high-value lessons are:
+`gstack` is a broad engineering operating system built around roles, a browser daemon, repo policy injection, and durable project memory. It is not a minimal prompt pack and not just a skill library. For `wayrail`, the high-value lessons are:
 
 - deterministic host-aware bootstrap
 - stage routing backed by skills and tools
@@ -85,7 +85,7 @@ Observed effects:
 - `.claude/hooks/check-gstack.sh` is added
 - required mode can block work when the global install is missing
 
-This is significant because it shows a strong pattern for `harness-kit`:
+This is significant because it shows a strong pattern for `wayrail`:
 
 - personal install
 - repo adoption
@@ -322,7 +322,7 @@ This is why `gstack` feels like an OS rather than a skill pack.
 | `bin/gstack-learnings-search` | memory retrieval | reuse of learnings |
 | `bin/gstack-taste-update` | preference persistence | decayed taste model |
 
-## Design Lessons For Harness Kit
+## Design Lessons For Wayrail
 
 ### What To Steal
 
@@ -340,7 +340,7 @@ This is why `gstack` feels like an OS rather than a skill pack.
 
 ### Unclear Or Conditional Lessons
 
-- `taste-profile.json` is interesting, but `harness-kit` may not need user-taste modeling in v1
+- `taste-profile.json` is interesting, but `wayrail` may not need user-taste modeling in v1
 - browser runtime persistence is powerful, but may be a downstream runtime layer rather than starter logic
 
 ## Open Questions
@@ -434,7 +434,7 @@ This means `setup` is the real bootstrap spec for the product.
 - adds routing instructions
 - can block work in required mode
 
-This is a clear pattern for `harness-kit`: personal setup and repo adoption should probably be separate operations.
+This is a clear pattern for `wayrail`: personal setup and repo adoption should probably be separate operations.
 
 ### Update Responsibilities
 

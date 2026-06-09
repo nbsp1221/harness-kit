@@ -23,7 +23,7 @@ Write a short re-entry summary here. This section should let a future reader rec
 
 ## Why It Matters
 
-- Why this project is relevant to `harness-kit`
+- Why this project is relevant to `wayrail`
 - Which problem surface it overlaps with
 - Whether it is a direct benchmark or a side reference
 

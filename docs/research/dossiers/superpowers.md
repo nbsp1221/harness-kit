@@ -21,7 +21,7 @@ depth: dossier
 - transcript-based verification
 - file-backed brainstorm state
 
-For `harness-kit`, the most reusable lessons are:
+For `wayrail`, the most reusable lessons are:
 
 - bootstrap early enough to affect the first turn
 - encode lifecycle gates as files, not vibes
@@ -168,7 +168,7 @@ Each stage:
 - has a clear artifact expectation
 - blocks the next stage when necessary
 
-That is exactly the kind of behavior `harness-kit` needs to encode.
+That is exactly the kind of behavior `wayrail` needs to encode.
 
 ### Workflow Components
 
@@ -280,7 +280,7 @@ Recovery is lighter than in a runtime platform, but still present through:
 | `.cursor-plugin/plugin.json` | Cursor registration | host install contract |
 | `docs/testing.md` | transcript-based verification contract | evidence discipline |
 
-## Design Lessons For Harness Kit
+## Design Lessons For Wayrail
 
 ### What To Steal
 
@@ -298,7 +298,7 @@ Recovery is lighter than in a runtime platform, but still present through:
 
 ### Unclear Or Conditional Lessons
 
-- the brainstorm companion server is useful, but `harness-kit` may not need a server at all if dossier/spec state can stay static
+- the brainstorm companion server is useful, but `wayrail` may not need a server at all if dossier/spec state can stay static
 - OpenCode plugin behavior and legacy hook behavior may still be transitional rather than a final architecture
 
 ## Open Questions
@@ -407,7 +407,7 @@ The legacy or compatibility hook path matters because it preserves:
 - Windows bridge compatibility
 - a host-agnostic bootstrap fallback
 
-Even if `harness-kit` chooses not to support all of these, this is a useful example of layered reachability.
+Even if `wayrail` chooses not to support all of these, this is a useful example of layered reachability.
 
 ## Appendix D: Detailed File Role Notes
 
@@ -475,7 +475,7 @@ It compounds through:
 - transcript-backed verification
 - versioned methodology files
 
-That is relevant to `harness-kit` because a strong v1 may not need more than:
+That is relevant to `wayrail` because a strong v1 may not need more than:
 
 - good bootstrap
 - durable files

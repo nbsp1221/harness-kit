@@ -11,17 +11,17 @@ timezone: Asia/Seoul
 
 ## Problem
 
-`harness-kit` needs a concrete downstream repository starter shape before implementation begins.
+`wayrail` needs a concrete downstream repository starter shape before implementation begins.
 Without that shape, bootstrap, adoption, workflow skills, and doctor behavior remain abstract decisions rather than an installable contract.
 
-The starter must make a repository legible to both humans and agents without turning `harness-kit` into a runtime platform.
+The starter must make a repository legible to both humans and agents without turning `wayrail` into a runtime platform.
 
 ## Why Now
 
 The Phase 1 foundation decisions have settled the core repository model:
 
 - `AGENTS.md` is the thin agent entrypoint.
-- `harness-kit.yaml` is the repo-local structured contract.
+- `wayrail.yaml` is the repo-local structured contract.
 - workflow artifacts live under `specs/<id>/`.
 - durable learnings start as `memory/learnings.md`.
 - starter operations are scripts-first and non-destructive.
@@ -31,12 +31,12 @@ The next implementation step should not proceed until this starter contract is c
 ## Requirements
 
 - `R1`: The starter MUST install or define a thin root `AGENTS.md` that routes agents to the local working contract without becoming a full project manual.
-- `R2`: The starter MUST install `harness-kit.yaml` as the authoritative repo-local structured configuration contract.
+- `R2`: The starter MUST install `wayrail.yaml` as the authoritative repo-local structured configuration contract.
 - `R3`: The starter MUST provide `docs/roadmap/README.md` as the initial home for product or project direction.
 - `R4`: The starter MUST create `specs/` as the workflow artifact root.
 - `R5`: The starter MUST include `specs/_templates/spec.md`, `plan.md`, `verification.md`, and `review.md`.
 - `R6`: The starter MUST provide `memory/learnings.md` as the initial durable learning surface.
-- `R7`: The starter MUST reserve `scripts/harness-kit/bootstrap`, `adopt`, and `doctor` as the starter operation surface.
+- `R7`: The starter MUST reserve `scripts/wayrail/bootstrap`, `adopt`, and `doctor` as the starter operation surface.
 - `R8`: `bootstrap` and `adopt` MUST be non-destructive by default and MUST preserve existing user-authored files.
 - `R9`: The starter MUST support agent-readable script behavior through bounded output, meaningful exit codes, and JSON mode where useful.
 - `R10`: The starter MUST NOT install broad runtime infrastructure, host-specific config, hooks, databases, dashboards, or task databases in Phase 1.
@@ -46,7 +46,7 @@ The next implementation step should not proceed until this starter contract is c
 - `SC1`: A fresh target repository can receive the starter structure without relying on chat memory.
 - `SC2`: An existing target repository can be inspected for adoption without overwriting `README.md`, `AGENTS.md`, existing docs, specs, or memory.
 - `SC3`: A coding agent can determine where instructions, config, active workflow artifacts, and learnings live from repository files alone.
-- `SC4`: The starter structure is sufficient for the later `hk-spec`, `hk-plan`, `hk-verify`, and `hk-review` skills to operate against visible files.
+- `SC4`: The starter structure is sufficient for the later `wr-spec`, `wr-plan`, `wr-verify`, and `wr-review` skills to operate against visible files.
 - `SC5`: The starter remains clearly separate from a runtime platform or packaged public CLI.
 
 ## Scope
@@ -75,7 +75,7 @@ Out of scope:
 ## Constraints
 
 - Root `AGENTS.md` must stay thin and routing-oriented.
-- `harness-kit.yaml` must remain repo-local and must not contain secrets, personal preferences, generated state, or host-specific runtime settings.
+- `wayrail.yaml` must remain repo-local and must not contain secrets, personal preferences, generated state, or host-specific runtime settings.
 - `specs/` is the workflow artifact root.
 - Individual work items use `specs/<YYYYMMDD-HHMM-short-slug>/`.
 - `bootstrap` and `adopt` must support dry-run style conflict reporting before destructive behavior is ever considered.
@@ -86,7 +86,7 @@ Out of scope:
 
 - `A1`: Phase 1 users can tolerate a scripts-first interface before a packaged CLI exists.
 - `A2`: A single `memory/learnings.md` file is enough for the initial compounding surface.
-- `A3`: Downstream repositories should not receive copied `hk-*` workflow skills by default.
+- `A3`: Downstream repositories should not receive copied `wr-*` workflow skills by default.
 - `A4`: Exact starter wording can evolve after real adoption, as long as the structural contract remains stable.
 
 ## Open Questions
@@ -95,7 +95,7 @@ Out of scope:
 
 None.
 
-### Deferred to hk-plan
+### Deferred to wr-plan
 
 - `Q1`: Exact file contents for the initial starter templates.
 - `Q2`: Exact JSON response shape for `bootstrap`, `adopt`, and `doctor`.
@@ -103,9 +103,9 @@ None.
 
 ## Planning Handoff
 
-Status: Ready for hk-plan
+Status: Ready for wr-plan
 Spec path: specs/20260429-0045-repo-local-starter-contract/spec.md
 Open questions: none blocking planning
 Key assumptions: A1, A2, A3, A4
 Requirement index: R1, R2, R3, R4, R5, R6, R7, R8, R9, R10
-Recommended next action: hk-plan
+Recommended next action: wr-plan

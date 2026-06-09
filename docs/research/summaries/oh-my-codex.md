@@ -18,11 +18,11 @@ host_focus:
 
 ## Summary
 
-In this first research pass, `oh-my-codex` looks like the most directly relevant Codex-oriented orchestration layer for `harness-kit`. It is not a standalone agent platform. It is a workflow and control layer around Codex CLI with strong ideas about state authority, setup boundaries, hook ownership, and local compounding.
+In this first research pass, `oh-my-codex` looks like the most directly relevant Codex-oriented orchestration layer for `wayrail`. It is not a standalone agent platform. It is a workflow and control layer around Codex CLI with strong ideas about state authority, setup boundaries, hook ownership, and local compounding.
 
 ## Why It Matters
 
-- `harness-kit` will likely live in a Codex-heavy workflow.
+- `wayrail` will likely live in a Codex-heavy workflow.
 - It provides concrete examples of Codex-native hooks, runtime fallbacks, and project-local versus global state.
 - It offers a clear local-first state and compounding model.
 
@@ -86,7 +86,7 @@ The strongest control patterns are:
 - safer launch and resume behavior
 - operational diagnostics that distinguish setup correctness from runtime correctness
 
-This is useful because `harness-kit` will likely need its own version of “what is installed” versus “what is actually ready to run.”
+This is useful because `wayrail` will likely need its own version of “what is installed” versus “what is actually ready to run.”
 
 ## Memory And Compounding
 
@@ -130,8 +130,8 @@ This is a strong fit for a local harness because it avoids pretending that compo
 
 ## Open Questions
 
-- Should `harness-kit` depend on the `.codex` bootstrap layer at all, or keep its own install surface isolated?
-- Does `harness-kit` need a wiki-like compounding layer, or only lifecycle semantics and state?
+- Should `wayrail` depend on the `.codex` bootstrap layer at all, or keep its own install surface isolated?
+- Does `wayrail` need a wiki-like compounding layer, or only lifecycle semantics and state?
 - Which compatibility layers in OMX are migration-only versus worth preserving?
 
 ## Evidence

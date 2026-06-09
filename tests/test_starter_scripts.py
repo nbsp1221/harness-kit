@@ -7,29 +7,29 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-CLI_PATH = REPO_ROOT / "bin" / "harness-kit.js"
+CLI_PATH = REPO_ROOT / "bin" / "wayrail.js"
 TEMPLATE_DIR = REPO_ROOT / "template"
 
 
 REQUIRED_TEMPLATE_FILES = [
     "README.md",
     "AGENTS.md",
-    "harness-kit.yaml",
+    "wayrail.yaml",
     "docs/roadmap/README.md",
     "specs/.gitkeep",
     "specs/_templates/spec.md",
     "specs/_templates/plan.md",
     "specs/_templates/verification.md",
     "specs/_templates/review.md",
-    ".agents/skills/hk-spec/SKILL.md",
-    ".agents/skills/hk-spec/scripts/new-spec-item",
-    ".agents/skills/hk-spec/agents/openai.yaml",
-    ".agents/skills/hk-plan/SKILL.md",
-    ".agents/skills/hk-plan/agents/openai.yaml",
-    ".agents/skills/hk-verify/SKILL.md",
-    ".agents/skills/hk-verify/agents/openai.yaml",
-    ".agents/skills/hk-review/SKILL.md",
-    ".agents/skills/hk-review/agents/openai.yaml",
+    ".agents/skills/wr-spec/SKILL.md",
+    ".agents/skills/wr-spec/scripts/new-spec-item",
+    ".agents/skills/wr-spec/agents/openai.yaml",
+    ".agents/skills/wr-plan/SKILL.md",
+    ".agents/skills/wr-plan/agents/openai.yaml",
+    ".agents/skills/wr-verify/SKILL.md",
+    ".agents/skills/wr-verify/agents/openai.yaml",
+    ".agents/skills/wr-review/SKILL.md",
+    ".agents/skills/wr-review/agents/openai.yaml",
     "memory/learnings.md",
 ]
 
@@ -41,7 +41,7 @@ class StarterTemplateTest(unittest.TestCase):
             self.assertTrue(path.exists(), f"missing template file: {relative_path}")
 
     def test_harness_config_is_minimal_phase_one_contract(self):
-        config = (TEMPLATE_DIR / "harness-kit.yaml").read_text()
+        config = (TEMPLATE_DIR / "wayrail.yaml").read_text()
 
         self.assertIn("schema_version: 1", config)
         self.assertIn("artifact_root: specs", config)
@@ -97,7 +97,7 @@ class StarterScriptTest(unittest.TestCase):
             self.assertTrue(payload["safe_to_apply"])
             for relative_path in REQUIRED_TEMPLATE_FILES:
                 self.assertTrue((target / relative_path).exists(), relative_path)
-            self.assertTrue((target / ".agents/skills/hk-spec/scripts/new-spec-item").stat().st_mode & 0o111)
+            self.assertTrue((target / ".agents/skills/wr-spec/scripts/new-spec-item").stat().st_mode & 0o111)
 
     def test_adopt_reports_conflict_without_partial_mutation(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -116,7 +116,7 @@ class StarterScriptTest(unittest.TestCase):
             ]
             self.assertEqual(len(conflicts), 1)
             self.assertEqual((target / "AGENTS.md").read_text(), "# Existing Agent Rules\n")
-            self.assertFalse((target / "harness-kit.yaml").exists())
+            self.assertFalse((target / "wayrail.yaml").exists())
 
     def test_adopt_preserves_existing_readme_without_blocking_missing_files(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -132,7 +132,7 @@ class StarterScriptTest(unittest.TestCase):
             actions = {item["path"]: item["action"] for item in payload["actions"]}
             self.assertEqual(actions["README.md"], "preserve")
             self.assertTrue((target / "AGENTS.md").exists())
-            self.assertTrue((target / "harness-kit.yaml").exists())
+            self.assertTrue((target / "wayrail.yaml").exists())
             self.assertEqual((target / "README.md").read_text(), "# Existing Project\n")
 
     def test_bootstrap_reports_ancestor_file_conflict_without_partial_mutation(self):
@@ -203,7 +203,7 @@ class StarterScriptTest(unittest.TestCase):
             payload = json.loads(result.stdout)
             actions = {item["path"]: item["action"] for item in payload["actions"]}
             self.assertEqual(actions["AGENTS.md"], "skip-identical")
-            self.assertEqual(actions["harness-kit.yaml"], "skip-identical")
+            self.assertEqual(actions["wayrail.yaml"], "skip-identical")
 
     def test_doctor_reports_valid_bootstrapped_repository(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -226,7 +226,7 @@ class StarterScriptTest(unittest.TestCase):
             target.mkdir()
             bootstrap = self.run_cli("bootstrap", "--json", str(target))
             self.assertEqual(bootstrap.returncode, 0, bootstrap.stderr)
-            (target / "harness-kit.yaml").unlink()
+            (target / "wayrail.yaml").unlink()
 
             result = self.run_cli("doctor", "--json", str(target))
 
@@ -234,7 +234,7 @@ class StarterScriptTest(unittest.TestCase):
             payload = json.loads(result.stdout)
             self.assertEqual(payload["status"], "fail")
             failed = [check for check in payload["checks"] if check["status"] == "fail"]
-            self.assertTrue(any(check["path"] == "harness-kit.yaml" for check in failed))
+            self.assertTrue(any(check["path"] == "wayrail.yaml" for check in failed))
 
     def test_doctor_reports_invalid_utf8_config_as_json_failure(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -242,7 +242,7 @@ class StarterScriptTest(unittest.TestCase):
             target.mkdir()
             bootstrap = self.run_cli("bootstrap", "--json", str(target))
             self.assertEqual(bootstrap.returncode, 0, bootstrap.stderr)
-            (target / "harness-kit.yaml").write_bytes(b"\xff\xfe\x00")
+            (target / "wayrail.yaml").write_bytes(b"\xff\xfe\x00")
 
             result = self.run_cli("doctor", "--json", str(target))
 

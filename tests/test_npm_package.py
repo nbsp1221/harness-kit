@@ -6,7 +6,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PACKAGE_JSON = REPO_ROOT / "package.json"
-CLI_PATH = REPO_ROOT / "bin" / "harness-kit.js"
+CLI_PATH = REPO_ROOT / "bin" / "wayrail.js"
 
 
 class NpmPackageTest(unittest.TestCase):
@@ -25,17 +25,19 @@ class NpmPackageTest(unittest.TestCase):
     def test_package_metadata_defines_public_scoped_cli(self):
         package = self.package_json()
 
-        self.assertEqual(package["name"], "@retn0/harness-kit")
+        self.assertEqual(package["name"], "@retn0/wayrail")
         self.assertEqual(package["version"], "0.1.0")
         self.assertEqual(package["type"], "module")
         self.assertEqual(package["license"], "MIT")
         self.assertEqual(package["publishConfig"]["access"], "public")
-        self.assertEqual(package["bin"]["harness-kit"], "./bin/harness-kit.js")
-        self.assertEqual(package["bin"]["hks"], "./bin/harness-kit.js")
+        self.assertEqual(package["bin"]["wayrail"], "./bin/wayrail.js")
+        self.assertEqual(package["bin"]["wyr"], "./bin/wayrail.js")
         self.assertIn("bin/", package["files"])
-        self.assertIn("template/", package["files"])
+        self.assertIn("template/wayrail.yaml", package["files"])
+        self.assertIn("template/.agents/skills/wr-spec/scripts/new-spec-item", package["files"])
         self.assertIn("README.md", package["files"])
-        self.assertNotIn("scripts/harness-kit/", package["files"])
+        self.assertNotIn("template/", package["files"])
+        self.assertNotIn("scripts/wayrail/", package["files"])
         self.assertIn("package:dry-run", package["scripts"])
         self.assertIn("package:check", package["scripts"])
         self.assertNotIn("publish", package["scripts"])
@@ -55,10 +57,10 @@ class NpmPackageTest(unittest.TestCase):
 
     def test_replaced_python_cli_implementation_is_absent(self):
         removed_paths = [
-            REPO_ROOT / "scripts" / "harness-kit" / "bootstrap",
-            REPO_ROOT / "scripts" / "harness-kit" / "adopt",
-            REPO_ROOT / "scripts" / "harness-kit" / "doctor",
-            REPO_ROOT / "scripts" / "harness-kit" / "_lib" / "starter.py",
+            REPO_ROOT / "scripts" / "wayrail" / "bootstrap",
+            REPO_ROOT / "scripts" / "wayrail" / "adopt",
+            REPO_ROOT / "scripts" / "wayrail" / "doctor",
+            REPO_ROOT / "scripts" / "wayrail" / "_lib" / "starter.py",
         ]
 
         for path in removed_paths:
@@ -73,19 +75,19 @@ class NpmPackageTest(unittest.TestCase):
         expected = {
             "package.json",
             "README.md",
-            "bin/harness-kit.js",
+            "bin/wayrail.js",
             "template/README.md",
             "template/AGENTS.md",
-            "template/harness-kit.yaml",
+            "template/wayrail.yaml",
             "template/specs/_templates/spec.md",
             "template/specs/_templates/plan.md",
             "template/specs/_templates/verification.md",
             "template/specs/_templates/review.md",
-            "template/.agents/skills/hk-spec/SKILL.md",
-            "template/.agents/skills/hk-spec/scripts/new-spec-item",
-            "template/.agents/skills/hk-plan/SKILL.md",
-            "template/.agents/skills/hk-verify/SKILL.md",
-            "template/.agents/skills/hk-review/SKILL.md",
+            "template/.agents/skills/wr-spec/SKILL.md",
+            "template/.agents/skills/wr-spec/scripts/new-spec-item",
+            "template/.agents/skills/wr-plan/SKILL.md",
+            "template/.agents/skills/wr-verify/SKILL.md",
+            "template/.agents/skills/wr-review/SKILL.md",
         }
         for path in expected:
             self.assertIn(path, paths)
@@ -94,7 +96,7 @@ class NpmPackageTest(unittest.TestCase):
             ".git/",
             ".pytest_cache/",
             "docs/research/",
-            "scripts/harness-kit/",
+            "scripts/wayrail/",
             "specs/",
             "tests/",
         )

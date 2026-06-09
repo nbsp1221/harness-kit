@@ -4,7 +4,7 @@
 
 Review date: 2026-05-02 Asia/Seoul
 
-The npm packaging CLI implementation satisfies the core spec direction: `@retn0/harness-kit` is package-shaped, exposes `harness-kit` and `hks`, implements `bootstrap`, `adopt`, and `doctor` directly in Node.js, and removes the previous Python CLI implementation under `scripts/harness-kit/`.
+The npm packaging CLI implementation satisfies the core spec direction: `@retn0/wayrail` is package-shaped, exposes `wayrail` and `wyr`, implements `bootstrap`, `adopt`, and `doctor` directly in Node.js, and removes the previous Python CLI implementation under `scripts/wayrail/`.
 
 Verification evidence is complete for the declared package checks, CLI behavior checks, tarball contents, and Python CLI removal.
 No actual publish occurred.
@@ -18,18 +18,18 @@ No actual publish occurred.
 - Reviewed implementation files:
   - `package.json`
   - `README.md`
-  - `bin/harness-kit.js`
+  - `bin/wayrail.js`
   - `tests/test_npm_package.py`
   - `tests/test_starter_scripts.py`
 - Reviewed removal evidence:
-  - `scripts/harness-kit/bootstrap`
-  - `scripts/harness-kit/adopt`
-  - `scripts/harness-kit/doctor`
-  - `scripts/harness-kit/_lib/starter.py`
+  - `scripts/wayrail/bootstrap`
+  - `scripts/wayrail/adopt`
+  - `scripts/wayrail/doctor`
+  - `scripts/wayrail/_lib/starter.py`
 
 ## Reviewers
 
-- Primary reviewer: Codex parent reviewer, fresh-context `hk-review` pass.
+- Primary reviewer: Codex parent reviewer, fresh-context `wr-review` pass.
 - Delegated reviewers: not used. The current environment only allows spawned subagents when explicitly requested in the active turn; this review was performed directly against the lifecycle artifacts, untracked workspace state, implementation files, and verification evidence.
 
 ## Findings
@@ -49,20 +49,20 @@ No actual publish occurred.
 ## Resolutions
 
 - Core package metadata is present and verified:
-  - `name: @retn0/harness-kit`
+  - `name: @retn0/wayrail`
   - `version: 0.1.0`
   - `publishConfig.access: public`
-  - `bin.harness-kit` and `bin.hks`
+  - `bin.wayrail` and `bin.wyr`
   - `files` allowlist
 - Native Node CLI requirement is met:
-  - `bin/harness-kit.js` implements core command behavior directly.
+  - `bin/wayrail.js` implements core command behavior directly.
   - No Python subprocess delegation is present.
 - Python CLI removal requirement is met:
-  - Former `scripts/harness-kit/*` Python entrypoints and `_lib/starter.py` are absent.
+  - Former `scripts/wayrail/*` Python entrypoints and `_lib/starter.py` are absent.
   - Tests assert the removed paths do not exist.
 - Package content requirement is met:
   - `npm pack --dry-run --json` includes package runtime files and starter template files.
-  - Tests assert `specs/`, `tests/`, caches, research docs, and `scripts/harness-kit/` are excluded.
+  - Tests assert `specs/`, `tests/`, caches, research docs, and `scripts/wayrail/` are excluded.
 - Verification handoff is complete:
   - Focused pytest, full unittest discovery, py_compile, Node help commands, npm pack dry run, package check, executable shebang check, and removal evidence are recorded.
 

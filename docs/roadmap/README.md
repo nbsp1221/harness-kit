@@ -7,9 +7,9 @@ roadmap_owner: repository maintainer
 update_when: phase-start, phase-end, boundary-change, research-shift
 ---
 
-# Harness Kit Roadmap
+# Wayrail Roadmap
 
-> Internal-first, public-readable roadmap for `harness-kit`.
+> Internal-first, public-readable roadmap for `wayrail`.
 >
 > This is a phase-based product roadmap, not a release plan and not a task backlog.
 > Detailed feature design belongs in [docs/plans/](../plans/).
@@ -33,9 +33,9 @@ update_when: phase-start, phase-end, boundary-change, research-shift
 
 ## North Star
 
-`harness-kit` should let one person run many agent-driven projects with the same working contract, verification discipline, and compounding loop, without rebuilding the harness from scratch each time.
+`wayrail` should let one person run many agent-driven projects with the same working contract, verification discipline, and compounding loop, without rebuilding the harness from scratch each time.
 
-In its mature form, `harness-kit` should make a new or existing repository immediately legible to both humans and coding agents by installing:
+In its mature form, `wayrail` should make a new or existing repository immediately legible to both humans and coding agents by installing:
 
 - a repo-local agent contract
 - a standard workflow with named stage boundaries
@@ -76,17 +76,17 @@ That creates recurring waste:
 - session learnings do not reliably compound across projects
 - existing repositories are hard to standardize after they have already drifted
 
-`harness-kit` exists to standardize the working model around the agent, not to compete with the model itself.
+`wayrail` exists to standardize the working model around the agent, not to compete with the model itself.
 
 ## Product Definition
 
-`harness-kit` is a repo-local starter and contract system.
+`wayrail` is a repo-local starter and contract system.
 
 Its core job is to install, validate, and evolve a standard agent working model across many repositories.
 
 At minimum, the product should be able to:
 
-- bootstrap a new repository into the `harness-kit` working model
+- bootstrap a new repository into the `wayrail` working model
 - adopt an existing repository into that same model
 - make the local contract visible and inspectable in files
 - validate whether the repository still satisfies the contract
@@ -170,7 +170,7 @@ Completion should require visible verification commands, checks, or artifacts.
 ### 5. Bootstrap and Runtime Must Stay Distinct
 
 Project setup, validation, and upgrade concerns must not be confused with a full runtime substrate.
-`harness-kit` should first standardize repository shape and working rules before it grows heavier operational features.
+`wayrail` should first standardize repository shape and working rules before it grows heavier operational features.
 
 ### 6. Compounding Must Be Lightweight and Durable
 
@@ -229,7 +229,7 @@ The system is not yet mature enough to treat later phases as commitments.
 
 ### Phase 1: Starter Foundation
 
-Goal: make `harness-kit` capable of standardizing repository startup.
+Goal: make `wayrail` capable of standardizing repository startup.
 
 This phase should establish:
 
@@ -239,7 +239,7 @@ This phase should establish:
 - a canonical roadmap, research, and planning document structure
 - an initial command surface for installing the starter, whether that starts as a CLI or a thin scripted entry point
 
-By the end of this phase, `harness-kit` should answer:
+By the end of this phase, `wayrail` should answer:
 
 - how a repository enters the system
 - which files are considered part of the installed harness
@@ -280,7 +280,7 @@ This phase should establish:
 - lightweight persistent learnings, checkpoints, or wiki-like local state
 - a clear distinction between setup validation and execution readiness
 
-By the end of this phase, `harness-kit` should no longer be just a starter. It should actively reduce quality drift over time.
+By the end of this phase, `wayrail` should no longer be just a starter. It should actively reduce quality drift over time.
 
 Success signals:
 
@@ -307,7 +307,7 @@ Success signals:
 
 ### Phase 5: Internal Complete System
 
-Goal: make `harness-kit` the default internal way to start, standardize, and maintain agent-first repositories.
+Goal: make `wayrail` the default internal way to start, standardize, and maintain agent-first repositories.
 
 This phase should establish:
 
@@ -316,7 +316,7 @@ This phase should establish:
 - a strong enough contract that new project setup does not require rediscovering process decisions
 - a clear position on which optional features remain outside the core
 
-At this point, `harness-kit` should behave like a dependable internal operating standard for repositories, even though it remains implemented as a file-first public repository.
+At this point, `wayrail` should behave like a dependable internal operating standard for repositories, even though it remains implemented as a file-first public repository.
 
 Success signals:
 
@@ -357,7 +357,7 @@ The roadmap stays useful only if each phase has a clear definition of done.
 
 ### Phase 5 Exit Criteria
 
-- `harness-kit` is the default starting point for the owner's new repositories.
+- `wayrail` is the default starting point for the owner's new repositories.
 - The core boundary is stable enough that optional features can be judged against it.
 - The system reduces repeated process design work across projects in practice.
 
@@ -393,7 +393,7 @@ The project can easily overgrow into a runtime platform before the starter and c
 
 ### 2. Recreating Prompt Pack Sprawl
 
-If too many skills, roles, or project-specific exceptions enter the core too early, the same inconsistency problem returns inside `harness-kit`.
+If too many skills, roles, or project-specific exceptions enter the core too early, the same inconsistency problem returns inside `wayrail`.
 
 ### 3. Confusing Roadmap With Backlog
 

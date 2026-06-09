@@ -19,11 +19,11 @@ host_focus:
 
 ## Summary
 
-In this first research pass, `Archon` looks like the best workflow-engine benchmark in the target set. It treats harness engineering as deterministic, YAML-defined workflow execution with validation, approvals, resume semantics, and explicit lifecycle operations. It is broader than `harness-kit` v1, but very valuable as a design reference.
+In this first research pass, `Archon` looks like the best workflow-engine benchmark in the target set. It treats harness engineering as deterministic, YAML-defined workflow execution with validation, approvals, resume semantics, and explicit lifecycle operations. It is broader than `wayrail` v1, but very valuable as a design reference.
 
 ## Why It Matters
 
-- `harness-kit` cares about standardized startup and predictable execution.
+- `wayrail` cares about standardized startup and predictable execution.
 - Archon encodes workflows as durable artifacts instead of prompt habits.
 - It is the best benchmark for understanding where a starter ends and a workflow engine begins.
 
@@ -63,7 +63,7 @@ Important takeaways:
 - run state is durable
 - resume semantics are part of the design, not an afterthought
 
-If `harness-kit` wants a reliable workflow control plane later, this is the best benchmark in the current set to learn from.
+If `wayrail` wants a reliable workflow control plane later, this is the best benchmark in the current set to learn from.
 
 ## Bootstrap Model
 
@@ -73,7 +73,7 @@ Bootstrap and configuration use a three-layer precedence model:
 - home-scoped globals
 - repo-local overrides
 
-This is one of Archon's most relevant ideas for `harness-kit`, because it shows how to preserve reusable defaults without losing repository ownership.
+This is one of Archon's most relevant ideas for `wayrail`, because it shows how to preserve reusable defaults without losing repository ownership.
 
 ## Verification And Control
 
@@ -108,7 +108,7 @@ This is powerful, but materially heavier than a file-backed local starter.
 ## Weaknesses
 
 - Heavier than a lean starter
-- Database and server architecture may be premature for `harness-kit` v1
+- Database and server architecture may be premature for `wayrail` v1
 - Broad adapter and platform surface can obscure the core lessons if copied too literally
 
 ## What To Steal
@@ -126,8 +126,8 @@ This is powerful, but materially heavier than a file-backed local starter.
 
 ## Open Questions
 
-- Should `harness-kit` mirror Archon's global overlay model or stay repo-scoped only in v1?
-- Does `harness-kit` need a workflow engine core later, or only a lighter starter layer?
+- Should `wayrail` mirror Archon's global overlay model or stay repo-scoped only in v1?
+- Does `wayrail` need a workflow engine core later, or only a lighter starter layer?
 - Which parts of Archon's surface are essential benchmark material versus unrelated product scope?
 
 ## Evidence

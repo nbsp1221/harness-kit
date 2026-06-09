@@ -12,7 +12,7 @@ The review used a three-way read-only subagent fan-out plus parent synthesis:
 - maintainability, simplicity, and performance
 
 The first pass found blocking issues in non-destructive adoption and stable JSON behavior.
-Those issues were fixed in `scripts/harness-kit/_lib/starter.py`, covered with focused tests, and re-verified.
+Those issues were fixed in `scripts/wayrail/_lib/starter.py`, covered with focused tests, and re-verified.
 
 ## Findings
 
@@ -40,7 +40,7 @@ Those issues were fixed in `scripts/harness-kit/_lib/starter.py`, covered with f
 ## Residual Risk
 
 - The scripts still assume Python 3 is available.
-- `doctor` intentionally validates `harness-kit.yaml` by required snippets rather than a full YAML parser.
+- `doctor` intentionally validates `wayrail.yaml` by required snippets rather than a full YAML parser.
 - Directory handling remains file-oriented for Phase 1; automatic merge and repair remain out of scope.
 
 ## Handoff
@@ -50,7 +50,7 @@ Spec path: `specs/20260429-0045-repo-local-starter-contract/spec.md`
 Implementation paths:
 
 - `template/`
-- `scripts/harness-kit/`
+- `scripts/wayrail/`
 - `tests/test_starter_scripts.py`
 
-Recommended next action: start the next spec item or begin defining the first `hk-*` skill implementation.
+Recommended next action: start the next spec item or begin defining the first `wr-*` skill implementation.

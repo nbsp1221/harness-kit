@@ -13,7 +13,7 @@ depth: dossier
 
 ## Executive Summary
 
-`compound-engineering-plugin` is best understood as a multi-host packaging and workflow-distribution system for a staged engineering method, not as a standalone runtime. It distributes skills, agents, docs, and conversion logic across multiple targets, and the install surface is one of its most important design areas. For `harness-kit`, the most reusable parts are:
+`compound-engineering-plugin` is best understood as a multi-host packaging and workflow-distribution system for a staged engineering method, not as a standalone runtime. It distributes skills, agents, docs, and conversion logic across multiple targets, and the install surface is one of its most important design areas. For `wayrail`, the most reusable parts are:
 
 - explicit lifecycle stages with artifact handoffs
 - manifest-backed install and cleanup
@@ -21,7 +21,7 @@ depth: dossier
 - path-safety checks around generated artifacts
 - session-history extraction and documentation-backed compounding
 
-The least reusable parts for `harness-kit` v1 are:
+The least reusable parts for `wayrail` v1 are:
 
 - broad cross-host packaging before the local contract is stable
 - shared-root artifact ownership patterns
@@ -37,7 +37,7 @@ The repo presents itself as an official compound engineering plugin. In practice
 
 That distinction matters because the repo's visible philosophy can distract from its most important engineering contribution: controlled bundle generation and migration across different host layouts.
 
-For `harness-kit`, this makes `compound-engineering-plugin` more useful as a benchmark for:
+For `wayrail`, this makes `compound-engineering-plugin` more useful as a benchmark for:
 
 - staged lifecycle packaging
 - target-aware install behavior
@@ -95,7 +95,7 @@ That means:
 - the project bootstrap is intentionally separate from the package bootstrap
 - `compound-engineering-plugin` distinguishes “plugin available” from “project prepared”
 
-For `harness-kit`, this is a major lesson. We should not collapse:
+For `wayrail`, this is a major lesson. We should not collapse:
 
 - host install
 - repo bootstrap
@@ -118,7 +118,7 @@ High-level trace reconstructed from the code and docs:
 
 ### Why This Matters
 
-The install path already contains most of the architectural discipline `harness-kit` needs:
+The install path already contains most of the architectural discipline `wayrail` needs:
 
 - target-aware output
 - managed ownership
@@ -266,13 +266,13 @@ This is not a general-purpose memory store, but it is a real compounding mechani
 
 ### Practical Lesson
 
-`harness-kit` should copy:
+`wayrail` should copy:
 
 - structured learnings and lifecycle artifacts
 - session-history extraction if useful
 - migration memory encoded in code
 
-`harness-kit` should not assume:
+`wayrail` should not assume:
 
 - that this repo already solved durable memory as a substrate
 
@@ -333,7 +333,7 @@ That makes this repo especially valuable as a bootstrap and upgrade benchmark.
 | `tests/legacy-cleanup.test.ts` | stale artifact pruning proof | migration safety |
 | `tests/session-history-scripts.test.ts` | history extraction proof | compounding support |
 
-## Design Lessons For Harness Kit
+## Design Lessons For Wayrail
 
 ### What To Steal
 
@@ -352,7 +352,7 @@ That makes this repo especially valuable as a bootstrap and upgrade benchmark.
 
 ### Unclear Or Conditional Lessons
 
-- Codex agent file generation is useful, but the exact AGENTS bootstrap pattern may depend on how `harness-kit` defines its own repo contract.
+- Codex agent file generation is useful, but the exact AGENTS bootstrap pattern may depend on how `wayrail` defines its own repo contract.
 - Session-history parsing may be worth it later, but probably not in v1 unless compounding becomes central immediately.
 
 ## Open Questions
@@ -500,7 +500,7 @@ This is one of the most important reusable lessons in the repo.
 - `src/utils/resolve-output.ts`
   Directory policy layer. Important for scope and root reasoning.
 - `src/targets/codex.ts`
-  Most useful target writer for `harness-kit`, since Codex matters immediately.
+  Most useful target writer for `wayrail`, since Codex matters immediately.
 - `src/targets/opencode.ts`
   Useful comparison writer because it has different output semantics.
 - `src/targets/managed-artifacts.ts`

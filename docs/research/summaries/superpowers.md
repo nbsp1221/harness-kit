@@ -25,7 +25,7 @@ In this first research pass, `superpowers` looks like a development methodology 
 
 - It is a large public system in this area.
 - It provides a mature example of process skill composition and workflow enforcement.
-- It reveals both what `harness-kit` should adopt and what it should leave to adapters or future extensions.
+- It reveals both what `wayrail` should adopt and what it should leave to adapters or future extensions.
 
 ## Snapshot
 
@@ -63,7 +63,7 @@ The workflow is a fixed pipeline with hard gates:
 - verify before completion
 - finish the development branch
 
-The key lesson for `harness-kit` is to encode a small number of hard stage boundaries with named artifacts and to refuse to skip them casually.
+The key lesson for `wayrail` is to encode a small number of hard stage boundaries with named artifacts and to refuse to skip them casually.
 
 ## Bootstrap Model
 
@@ -76,7 +76,7 @@ Observed patterns:
 - hooks that inject context or enforce checks
 - adapter code that translates the core method into host semantics
 
-This suggests `harness-kit` should have a thin adapter layer per host rather than pretending one install story fits every runtime.
+This suggests `wayrail` should have a thin adapter layer per host rather than pretending one install story fits every runtime.
 
 ## Verification And Control
 
@@ -90,7 +90,7 @@ Observed mechanisms:
 - hooks that enforce behavior around lifecycle events
 - tests around skill triggering
 
-The strong pattern here is “do not trust the agent’s self-report.” That is directly relevant to `harness-kit`.
+The strong pattern here is “do not trust the agent’s self-report.” That is directly relevant to `wayrail`.
 
 ## Memory And Compounding
 
@@ -102,7 +102,7 @@ Observed patterns:
 - release notes and update flow
 - context reinjection patterns in host docs
 
-This is valuable, but it is not the same as a native semantic memory layer. `harness-kit` should not pretend otherwise.
+This is valuable, but it is not the same as a native semantic memory layer. `wayrail` should not pretend otherwise.
 
 ## Strengths
 
@@ -116,7 +116,7 @@ This is valuable, but it is not the same as a native semantic memory layer. `har
 - Very broad surface area
 - Easy to over-import and create a bloated local system
 - Some docs and runtime surfaces can drift if not derived or tested together
-- Contributor tone is sharper than `harness-kit` likely needs
+- Contributor tone is sharper than `wayrail` likely needs
 
 ## What To Steal
 
@@ -134,7 +134,7 @@ This is valuable, but it is not the same as a native semantic memory layer. `har
 
 ## Open Questions
 
-- Does `harness-kit` need a real memory API or is file-backed compounding enough for v1?
+- Does `wayrail` need a real memory API or is file-backed compounding enough for v1?
 - How many adapters should exist at launch?
 - Should adapter docs be generated or tested against manifests to avoid drift?
 

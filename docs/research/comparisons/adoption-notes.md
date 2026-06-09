@@ -5,7 +5,7 @@ source_pass: 2026-04-21-first-pass
 
 # Adoption Notes
 
-This document captures what `harness-kit` is likely to adopt, defer, or reject after the first full research pass.
+This document captures what `wayrail` is likely to adopt, defer, or reject after the first full research pass.
 
 ## Likely V1 Inclusions
 
@@ -70,7 +70,7 @@ This document captures what `harness-kit` is likely to adopt, defer, or reject a
 
 ## Current Working Product Boundary
 
-`harness-kit` v1 should behave like a project starter and contract layer, not like a complete agent runtime platform.
+`wayrail` v1 should behave like a project starter and contract layer, not like a complete agent runtime platform.
 
 That means it should:
 
@@ -90,16 +90,16 @@ It should not yet try to own:
 
 ## Concrete Design Pressure From The Research
 
-- `compound-engineering-plugin` pressures `harness-kit` to keep lifecycle stages distinct
-- `oh-my-codex` pressures `harness-kit` to make state authority explicit
-- `Archon` pressures `harness-kit` to define config precedence early
-- `gstack` pressures `harness-kit` to avoid ephemeral-only session memory
-- `superpowers` pressures `harness-kit` to distrust agent self-report
-- `OpenHarness` pressures `harness-kit` to gate tools before trusting outer UX layers
+- `compound-engineering-plugin` pressures `wayrail` to keep lifecycle stages distinct
+- `oh-my-codex` pressures `wayrail` to make state authority explicit
+- `Archon` pressures `wayrail` to define config precedence early
+- `gstack` pressures `wayrail` to avoid ephemeral-only session memory
+- `superpowers` pressures `wayrail` to distrust agent self-report
+- `OpenHarness` pressures `wayrail` to gate tools before trusting outer UX layers
 
 ## Questions To Resolve Before V1 Scope Freezes
 
-- Should `harness-kit` ship any hooks in v1, or only describe hook points?
+- Should `wayrail` ship any hooks in v1, or only describe hook points?
 - Should bootstrap create only docs and contracts, or also runnable scripts and checks?
 - Should the initial workflow be Codex-first or host-agnostic with a Codex adapter first?
 - What is the smallest compounding mechanism worth shipping: learnings log, wiki, checkpoint file, or all three?
@@ -108,4 +108,4 @@ It should not yet try to own:
 ## Source Notes
 
 - Source pass: [2026-04-21 First Pass](../passes/2026-04-21-first-pass.md)
-- Adoption judgments are synthesized from the target reports and remain provisional until the `harness-kit` v1 architecture is written.
+- Adoption judgments are synthesized from the target reports and remain provisional until the `wayrail` v1 architecture is written.

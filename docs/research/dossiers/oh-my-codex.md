@@ -21,7 +21,7 @@ depth: dossier
 - durable `.omx` state and wiki artifacts
 - session-scoped compatibility layers
 
-For `harness-kit`, the highest-value lessons are:
+For `wayrail`, the highest-value lessons are:
 
 - install-time scaffolding should define the runtime contract
 - state authority must be explicit
@@ -45,7 +45,7 @@ OMX is not a general agent runtime platform in the way OpenHarness is. It is a w
 - HUD or state surfaces
 - project-local state
 
-This makes it extremely relevant for `harness-kit` because the likely initial host context is Codex itself.
+This makes it extremely relevant for `wayrail` because the likely initial host context is Codex itself.
 
 In practice, OMX occupies three layers:
 
@@ -101,7 +101,7 @@ And writes managed files for:
 - `.codex/hooks.json`
 - `.codex/config.toml`
 
-This is a key lesson for `harness-kit`: bootstrap is part of the product contract.
+This is a key lesson for `wayrail`: bootstrap is part of the product contract.
 
 ### Why `doctor` Matters But Is Not Enough
 
@@ -110,7 +110,7 @@ The repo’s own structure suggests a distinction between:
 - install sanity
 - authenticated runtime readiness
 
-This is important. `harness-kit` should probably mirror that distinction:
+This is important. `wayrail` should probably mirror that distinction:
 
 - `setup`
 - `doctor`
@@ -178,7 +178,7 @@ The operator command layer handles:
 - updates
 - diagnostics
 
-This strongly suggests `harness-kit` should think in two layers:
+This strongly suggests `wayrail` should think in two layers:
 
 - in-session workflow
 - operator control plane
@@ -206,7 +206,7 @@ Observed:
 - compatibility state such as `skill-active`
 - explicit state-path validation
 
-This is a major design lesson for `harness-kit`: state needs a canonical authority model.
+This is a major design lesson for `wayrail`: state needs a canonical authority model.
 
 ### Local Wiki
 
@@ -226,7 +226,7 @@ Persistent transcript or session search adds a different compounding layer:
 - not just “what rules do I have?”
 - but “what actually happened in prior runs?”
 
-That is valuable for `harness-kit`, though possibly later than v1.
+That is valuable for `wayrail`, though possibly later than v1.
 
 ## Verification, Permissions, And Recovery
 
@@ -250,7 +250,7 @@ These are small but crucial. They show that compounding state must be protected 
 
 ### Why This Matters
 
-`harness-kit` may never build a runtime as rich as OMX, but it should still borrow:
+`wayrail` may never build a runtime as rich as OMX, but it should still borrow:
 
 - clear scope resolution
 - atomic writes
@@ -276,7 +276,7 @@ These are small but crucial. They show that compounding state must be protected 
 | `src/subagents/tracker.ts` | delegation tracking | agent coordination |
 | `src/hud/state.ts` | visible operator state | observability |
 
-## Design Lessons For Harness Kit
+## Design Lessons For Wayrail
 
 ### What To Steal
 
@@ -294,13 +294,13 @@ These are small but crucial. They show that compounding state must be protected 
 
 ### Unclear Or Conditional Lessons
 
-- local wiki compounding is strong, but `harness-kit` may not need it in v1
+- local wiki compounding is strong, but `wayrail` may not need it in v1
 - the full team runtime may belong in a later runtime layer, not in the starter
 
 ## Open Questions
 
 - How much of the workflow transition logic is truly generic versus tied to OMX’s role system?
-- Does `harness-kit` need transcript search in v1, or only lightweight learnings and checkpoints?
+- Does `wayrail` need transcript search in v1, or only lightweight learnings and checkpoints?
 - Which OMX compatibility layers are migration-only?
 
 ## Appendix A: Structure Pass Notes
@@ -385,7 +385,7 @@ Project-scoped setup matters because it can write:
 - project-visible config
 - `.omx` state roots
 
-This is likely the most reusable pattern for `harness-kit`.
+This is likely the most reusable pattern for `wayrail`.
 
 ### Why Local State Matters
 
@@ -459,13 +459,13 @@ That is a meaningful design move because “durable knowledge” and “searchab
 
 - What exact allow/deny table exists in `workflow-transition.ts`?
 - Which files define the canonical set of modes?
-- What is the minimum viable subset of `.omx/wiki` worth copying into `harness-kit`?
+- What is the minimum viable subset of `.omx/wiki` worth copying into `wayrail`?
 - How much of the `doctor` command is static inspection versus live execution validation?
 - Which compatibility layers are still actively exercised by tests or docs, and which are just legacy baggage?
 
-## Appendix G: Minimal OMX Slice For Harness Kit
+## Appendix G: Minimal OMX Slice For Wayrail
 
-If `harness-kit` only copied the smallest useful OMX slice, it would likely include:
+If `wayrail` only copied the smallest useful OMX slice, it would likely include:
 
 - setup with clear owned-file boundaries
 - state authority and scope resolution

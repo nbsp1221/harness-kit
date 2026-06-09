@@ -9,16 +9,16 @@ owner: repository maintainer
 
 This document expands [the canonical roadmap](../README.md) for `Phase 1`.
 
-It defines what `starter foundation` means for `harness-kit`, what should be standardized first, and which project shape should become the default base for later phases.
+It defines what `starter foundation` means for `wayrail`, what should be standardized first, and which project shape should become the default base for later phases.
 
 This is a phase design document, not an implementation plan.
 Concrete build steps should later move into [docs/plans/](../../plans/).
 
 ## Goal
 
-Make `harness-kit` capable of putting a repository onto one visible starter path.
+Make `wayrail` capable of putting a repository onto one visible starter path.
 
-At the end of this phase, a new or existing repository should be able to enter the `harness-kit` system without relying on remembered setup rituals or hidden chat conventions.
+At the end of this phase, a new or existing repository should be able to enter the `wayrail` system without relying on remembered setup rituals or hidden chat conventions.
 
 ## Why Phase 1 Exists
 
@@ -32,7 +32,7 @@ If repository entry is inconsistent, then:
 - existing repositories require bespoke interpretation
 - future upgrades cannot distinguish core files from project-specific files
 
-Phase 1 solves the first problem in the chain: how a repository becomes a `harness-kit` repository.
+Phase 1 solves the first problem in the chain: how a repository becomes a `wayrail` repository.
 
 ## Scope
 
@@ -58,7 +58,7 @@ Phase 1 is not responsible for fully specifying:
 
 The design choices in this phase follow two main inputs:
 
-1. `harness-kit` research conclusions:
+1. `wayrail` research conclusions:
 
 - [research overview](../../research/comparisons/overview.md)
 - [adoption notes](../../research/comparisons/adoption-notes.md)
@@ -129,13 +129,13 @@ Reason:
 
 ## Recommended Project Shape
 
-This is the recommended Phase 1 target shape for a repository using `harness-kit`.
+This is the recommended Phase 1 target shape for a repository using `wayrail`.
 
 ```text
 <repo>/
   README.md
   AGENTS.md
-  harness-kit.yaml
+  wayrail.yaml
   docs/
     roadmap/
     research/          # optional for downstream projects unless they do product research
@@ -154,7 +154,7 @@ This is the recommended Phase 1 target shape for a repository using `harness-kit
   memory/
     learnings.md
   scripts/
-    harness-kit/
+    wayrail/
       bootstrap
       adopt
       doctor           # optional in Phase 1, but the location is reserved
@@ -163,7 +163,7 @@ This is the recommended Phase 1 target shape for a repository using `harness-kit
 This is a target shape, not a mandatory all-at-once install set.
 Some paths are required immediately and some are reserved for later phases.
 
-When `hk-spec` starts a new spec item, it should create the full lifecycle directory immediately.
+When `wr-spec` starts a new spec item, it should create the full lifecycle directory immediately.
 The scaffolding step should create `spec.md`, `plan.md`, `verification.md`, and `review.md`, but only `spec.md` should receive meaningful authored content at the spec stage.
 The later lifecycle files should start as minimal stubs that point to their owning skills.
 This keeps artifact paths predictable without implying that planning, verification, or review already happened.
@@ -178,9 +178,9 @@ This keeps artifact paths predictable without implying that planning, verificati
   Reason: the repository needs a visible local agent entry document early.
   It should be a thin table-of-contents style entrypoint, not the whole operating constitution.
   The starter should route agents to `specs/<id>/`, docs, and nested `AGENTS.md` files; it should not duplicate the full harness method.
-  For non-trivial work, it should point to the `spec -> plan -> implement -> verify -> review` lifecycle and the `hk-spec`, `hk-plan`, `hk-verify`, and `hk-review` skills when available.
+  For non-trivial work, it should point to the `spec -> plan -> implement -> verify -> review` lifecycle and the `wr-spec`, `wr-plan`, `wr-verify`, and `wr-review` skills when available.
   "Non-trivial" means work that changes behavior, public interface, repository structure, data, security posture, dependencies, workflow rules, or more than one tightly scoped file.
-- `harness-kit.yaml`
+- `wayrail.yaml`
   Reason: later phases need one explicit repo-local configuration anchor.
 - `docs/roadmap/`
   Reason: the project needs a place for direction-setting documents.
@@ -243,12 +243,12 @@ Use `SC1`, `A1`, and `Q1` style IDs only when success criteria, assumptions, or 
 
 User stories or acceptance scenarios may be added for user-facing features, but they should not be mandatory starter ceremony.
 
-`hk-spec` should ask at most three critical human questions during initial spec creation.
+`wr-spec` should ask at most three critical human questions during initial spec creation.
 Questions are reserved for choices that materially affect scope, user behavior, success criteria, non-goals, security or privacy posture, acceptable risk, or planning readiness.
 Low-impact defaults should become visible assumptions instead of conversational blockers.
 
-The spec is ready for `hk-plan` only when requirements are concrete, success criteria are objectively reviewable, scope boundaries are explicit, assumptions are visible, and no `Resolve Before Planning` questions remain.
-The `Planning Handoff` section should say whether the spec is ready for `hk-plan`, list remaining blockers if any, and include the spec path for a fresh agent.
+The spec is ready for `wr-plan` only when requirements are concrete, success criteria are objectively reviewable, scope boundaries are explicit, assumptions are visible, and no `Resolve Before Planning` questions remain.
+The `Planning Handoff` section should say whether the spec is ready for `wr-plan`, list remaining blockers if any, and include the spec path for a fresh agent.
 
 ### Spec Item Plan Shape
 
@@ -280,11 +280,11 @@ This keeps `plan.md` focused on HOW the spec item will be implemented: requireme
 
 `plan.md` should not own lifecycle state in Phase 1. Spec item `status` and `stage` belong in `spec.md` frontmatter.
 
-`hk-plan` should stop when `spec.md` is not ready for planning or still has `Resolve Before Planning` questions.
+`wr-plan` should stop when `spec.md` is not ready for planning or still has `Resolve Before Planning` questions.
 It should do bounded repository research, name relevant files and test conventions, and translate requirements into coarse implementation units.
 Implementation units may use checkboxes, but they should stay larger than patch-level tasks.
 Phase 1 should not create a separate `tasks.md` or task-generation skill.
-`hk-plan` defines expected verification evidence; `hk-verify` records actual evidence.
+`wr-plan` defines expected verification evidence; `wr-verify` records actual evidence.
 
 ### Spec Item Verification Shape
 
@@ -312,12 +312,12 @@ Each check should record the command or method, result, and concise evidence. In
 
 Skipped checks require a reason. Any residual uncertainty belongs in `Remaining Risk`.
 
-`hk-verify` should be a fresh-evidence writer.
+`wr-verify` should be a fresh-evidence writer.
 It should run planned checks from `plan.md`, record exact command or method evidence, and avoid source edits.
 Missing or unsafe checks should be recorded as `blocked` or `skipped`, not treated as passing.
 The overall verdict may be `pass`, `fail`, `partial`, or `blocked`.
 Human approval is required to accept skipped checks, waive failed checks, or proceed with incomplete evidence.
-`verification.md` should end with a review handoff that points `hk-review` at failed, blocked, skipped, or manually validated areas.
+`verification.md` should end with a review handoff that points `wr-review` at failed, blocked, skipped, or manually validated areas.
 
 ### Spec Item Review Shape
 
@@ -347,7 +347,7 @@ Findings should include severity, location when applicable, evidence, and recomm
 
 If no findings are raised, the artifact should state that explicitly and still record the scope, reviewer, and verdict.
 
-`hk-review` should be a read-only fresh-context review.
+`wr-review` should be a read-only fresh-context review.
 It should read `spec.md`, `plan.md`, `verification.md`, and the current diff, then write only `review.md`.
 It should not fix issues or approve release.
 For non-trivial or risky work, it may use fresh read-only reviewer roles such as correctness, testing/evidence, maintainability/scope, and conditional security/API/data/reliability reviewers.
@@ -359,12 +359,12 @@ Human approval is still separate from the review artifact.
 
 - `memory/learnings.md`
   Reason: even before a fuller compounding model exists, the repository should have a visible home for durable learnings.
-- `scripts/harness-kit/`
+- `scripts/wayrail/`
   Reason: reserving one location for starter entry points keeps the install surface legible.
 
 ### Minimal Configuration
 
-`harness-kit.yaml` should use a small versioned schema in Phase 1:
+`wayrail.yaml` should use a small versioned schema in Phase 1:
 
 ```yaml
 schema_version: 1
@@ -389,13 +389,13 @@ Future global config may hold personal preferences or machine paths, but it must
 
 ### Product Template Source
 
-The `harness-kit` product repository should keep one Phase 1 template source:
+The `wayrail` product repository should keep one Phase 1 template source:
 
 ```text
 template/
   README.md
   AGENTS.md
-  harness-kit.yaml
+  wayrail.yaml
   docs/
     roadmap/
       README.md
@@ -412,7 +412,7 @@ template/
 
 `README.md` is bootstrap-oriented and should not overwrite an existing README during adoption. `specs/_templates/` is not a spec item; it is a visible source for creating future spec item artifacts.
 
-The first spec-stage automation should live in `hk-spec` as a small scaffold script plus templates.
+The first spec-stage automation should live in `wr-spec` as a small scaffold script plus templates.
 The script is responsible for timestamped directory creation, slug normalization, frontmatter seed values, and stub file creation.
 The agent is responsible for discussing and writing the actual `spec.md` contents.
 The script should expose an agent-readable interface:
@@ -445,7 +445,7 @@ Phase 1 should separate three categories.
 
 ### Required
 
-Files that every repository needs in order to be recognized as a `harness-kit` repository.
+Files that every repository needs in order to be recognized as a `wayrail` repository.
 
 ### Recommended
 
@@ -464,7 +464,7 @@ Phase 1 should define exactly two starter actions.
 These should be scripts-first entrypoints with CLI-shaped contracts, not a packaged public CLI yet.
 Scripts should support bounded output, meaningful exit codes, `--help`, `--dry-run`, and `--json` where useful.
 Structured output belongs on stdout in JSON mode; diagnostics belong on stderr.
-A future `hk` or `harness-kit` CLI can wrap the same behavior after the workflow and distribution needs are stable.
+A future `hk` or `wayrail` CLI can wrap the same behavior after the workflow and distribution needs are stable.
 
 ### `bootstrap`
 
@@ -474,7 +474,7 @@ Expected behavior:
 
 - create the Phase 1 template artifacts
 - write `README.md` only when absent
-- create `AGENTS.md`, `harness-kit.yaml`, `docs/roadmap/README.md`, `specs/`, `specs/_templates/`, and `memory/learnings.md`
+- create `AGENTS.md`, `wayrail.yaml`, `docs/roadmap/README.md`, `specs/`, `specs/_templates/`, and `memory/learnings.md`
 - avoid creating a timestamped spec item by default
 - stop on conflicting existing files unless an explicit future force or merge mode is selected
 - avoid adding hooks, host-specific config, runtime state, or task databases
@@ -509,7 +509,7 @@ Intended future role:
 - distinguish starter install health from later execution readiness
 - validate that the repository still satisfies the local starter contract
 
-Initial checks should cover environment facts, required starter files, `harness-kit.yaml`, lifecycle template shape, workflow artifact readiness, and optional integration visibility.
+Initial checks should cover environment facts, required starter files, `wayrail.yaml`, lifecycle template shape, workflow artifact readiness, and optional integration visibility.
 It should not run project tests, install dependencies, merge docs, repair files, or claim runtime readiness by default.
 
 Exit behavior should be simple:
@@ -552,7 +552,7 @@ The paths differ in migration behavior, not in final identity.
 
 Phase 1 should introduce one repo-local configuration anchor:
 
-- `harness-kit.yaml`
+- `wayrail.yaml`
 
 Initial use should stay narrow and versioned.
 
@@ -603,7 +603,7 @@ The starter should make file ownership legible.
 
 Recommended ownership rule:
 
-- files created by `harness-kit` should be clearly documented as starter-managed
+- files created by `wayrail` should be clearly documented as starter-managed
 - files intended for ongoing project editing should stay editable and human-readable
 - reserved paths should be documented even if empty
 

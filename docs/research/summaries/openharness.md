@@ -24,7 +24,7 @@ In this first research pass, `OpenHarness` looks closer to a general open runtim
 
 - It shows what a more complete open harness platform can look like.
 - It offers useful ideas for permissions, lifecycle hooks, profiles, and markdown-first memory.
-- It is also a boundary marker for what `harness-kit` should probably not become in v1.
+- It is also a boundary marker for what `wayrail` should probably not become in v1.
 
 ## Snapshot
 
@@ -61,7 +61,7 @@ The main workflow lesson is structural:
 - provider choice is treated as workflow choice
 - coordination and tasks exist as reusable primitives rather than only as commands
 
-This makes OpenHarness more useful as an architecture reference than as a direct template for `harness-kit`'s lifecycle.
+This makes OpenHarness more useful as an architecture reference than as a direct template for `wayrail`'s lifecycle.
 
 ## Bootstrap Model
 
@@ -74,7 +74,7 @@ Observed patterns:
 - runtime startup after setup
 - separation between setup-time workspace logic and runtime execution
 
-This is useful because `harness-kit` will likely need a clean boundary between project bootstrap and ongoing execution.
+This is useful because `wayrail` will likely need a clean boundary between project bootstrap and ongoing execution.
 
 ## Verification And Control
 
@@ -87,7 +87,7 @@ Observed mechanisms:
 - pre and post hook execution
 - user prompts around risky actions
 
-The ordering matters. `harness-kit` should copy “tool gate first” rather than over-invest in outer presentation.
+The ordering matters. `wayrail` should copy “tool gate first” rather than over-invest in outer presentation.
 
 ## Memory And Compounding
 
@@ -99,7 +99,7 @@ Observed patterns:
 - manager and memdir abstractions
 - session storage carrying state forward
 
-This is useful because it gives `harness-kit` a low-friction durability model without requiring a database or opaque blob store.
+This is useful because it gives `wayrail` a low-friction durability model without requiring a database or opaque blob store.
 
 ## Strengths
 
@@ -110,7 +110,7 @@ This is useful because it gives `harness-kit` a low-friction durability model wi
 
 ## Weaknesses
 
-- Larger scope than `harness-kit` likely needs
+- Larger scope than `wayrail` likely needs
 - Better to learn from than to copy directly
 - Claude-shaped coordination details may not generalize
 - Duplicate state stores could become accidental complexity if copied without care
@@ -131,7 +131,7 @@ This is useful because it gives `harness-kit` a low-friction durability model wi
 
 ## Open Questions
 
-- Does `harness-kit` need background task primitives in v1?
+- Does `wayrail` need background task primitives in v1?
 - Which pieces of OpenHarness are substrate and which are product-specific opinion?
 - Are the observed session restore and compaction patterns reusable without the broader runtime?
 

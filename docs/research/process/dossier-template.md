@@ -20,7 +20,7 @@ Write the shortest possible summary that still lets a future reader recover the 
 - What the project claims to be
 - What it appears to be in practice
 - Where it sits in the harness landscape
-- Why it matters to `harness-kit`
+- Why it matters to `wayrail`
 
 ## Source Snapshot
 
@@ -103,7 +103,7 @@ Suggested shape:
 | File | Why it matters | Key concept |
 |---|---|---|
 
-## Design Lessons For Harness Kit
+## Design Lessons For Wayrail
 
 ### What To Steal
 

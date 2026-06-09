@@ -46,7 +46,7 @@ Every subagent return must include:
 
 - concrete repo-relative file paths
 - what the file proves
-- why that proof matters for `harness-kit`
+- why that proof matters for `wayrail`
 - unresolved gaps
 
 Subagents should prefer:
